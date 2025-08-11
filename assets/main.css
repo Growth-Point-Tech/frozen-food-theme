@@ -1769,6 +1769,11 @@ ul {
 .banner-section:has(.fluid) .feature-banner-information-wrapper {
   padding: 0px 3.25rem;
 }
+@media (max-width: 1023px) {
+  .banner-section:has(.fluid) .feature-banner-information-wrapper {
+    padding: 0px 1rem;
+  }
+}
 .banner-section.banner-large {
   height: 1110px;
 }
@@ -1827,6 +1832,11 @@ ul {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 2px;
+}
+@media (max-width: 1023px) {
+  .banner-section .banner-wrapper .feature-banner-information-wrapper .banner-title {
+    font-size: 11px;
+  }
 }
 .banner-section .banner-wrapper .feature-banner-information-wrapper .banner-subtitle {
   font-size: 40px;
@@ -2045,6 +2055,9 @@ ul {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+.cart-drawer .cart-content-wrapper .cart-footer .terms-condition-wrapper .checkbox-wrapper input[type=checkbox] {
+  accent-color: #303336; /* Your custom color */
 }
 .cart-drawer .cart-content-wrapper .cart-footer .btn {
   color: #fff !important;

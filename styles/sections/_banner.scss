@@ -14,6 +14,10 @@
 
     .feature-banner-information-wrapper {
       padding: 0px 3.25rem;
+
+      @include responsive(tablet) {
+        padding: 0px 1rem;
+      }
     }
   }
   &.banner-large {
@@ -79,6 +83,9 @@
         text-align: center;
         text-transform: uppercase;
         letter-spacing: 2px;
+        @include responsive(tablet) {
+          font-size: 11px;
+        }
       }
 
       .banner-subtitle {
