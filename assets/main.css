@@ -348,28 +348,28 @@ ul {
   letter-spacing: 1px;
 }
 .header-wrapper .menu-wrapper .menu-right-wrapper .navigation-wrappper .navigation-list:hover .down-icon {
-  fill: #bf222b;
+  fill: #c02329;
 }
 .header-wrapper .menu-wrapper .menu-right-wrapper .navigation-wrappper .navigation-list.active {
-  color: #bf222b;
+  color: #c02329;
   position: relative;
   font-weight: 500;
 }
 .header-wrapper .menu-wrapper .menu-right-wrapper .navigation-wrappper .navigation-list.active .down-icon {
-  fill: #bf222b;
+  fill: #c02329;
 }
 .header-wrapper .menu-wrapper .menu-right-wrapper .navigation-wrappper .navigation-list.active::after {
   content: "";
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #bf222b;
+  background-color: #c02329;
   width: 100%;
   height: 1px;
   bottom: -2px;
 }
 .header-wrapper .menu-wrapper .menu-right-wrapper .navigation-wrappper .navigation-list > a:hover {
-  color: #bf222b !important;
+  color: #c02329 !important;
 }
 .header-wrapper .menu-wrapper .menu-right-wrapper .navigation-wrappper .sub-navigation-wrapper {
   position: relative;
@@ -379,7 +379,7 @@ ul {
   text-decoration: none;
 }
 .header-wrapper .menu-wrapper .menu-right-wrapper .navigation-wrappper .sub-navigation-wrapper a:hover {
-  color: #bf222b !important;
+  color: #c02329 !important;
   text-decoration: none;
 }
 .header-wrapper .menu-wrapper .menu-right-wrapper .navigation-wrappper .sub-navigation-wrapper .sub-menu-wrapper {
@@ -407,7 +407,7 @@ ul {
   text-transform: uppercase;
 }
 .header-wrapper .menu-wrapper .menu-right-wrapper .navigation-wrappper .sub-navigation-wrapper .sub-menu-wrapper .sub-menu-list.active {
-  color: #bf222b;
+  color: #c02329;
   position: relative;
   font-weight: 500;
 }
@@ -523,7 +523,7 @@ ul {
   flex-grow: 1;
 }
 .footer-wrapper .newsletter-wrapper .newsletter-form-wrapper .newsletter-form-group .contact-email.error {
-  border-color: #bf222b;
+  border-color: #c02329;
 }
 .footer-wrapper .newsletter-wrapper .newsletter-form-wrapper .newsletter-form-group .btn {
   border-radius: 10px;
@@ -533,7 +533,7 @@ ul {
   gap: 10px;
 }
 .footer-wrapper .newsletter-wrapper .newsletter-form-wrapper .newsletter-form-err-msg {
-  color: #bf222b;
+  color: #c02329;
   font-size: 16px;
   font-family: "Brandon Grotesque", "Helvetica Neue";
   align-self: flex-start;
@@ -883,7 +883,7 @@ ul {
   letter-spacing: 1px;
 }
 .add-to-cart-modal-wrapper .modal-content .add-to-cart-product-wrapper .add-to-cart-product-information .product-price-wrapper .original-price + .discounted-price {
-  color: #bf222b;
+  color: #c02329;
   font-size: 18px;
   font-weight: 500;
   font-family: "Brandon Grotesque Medium", "Helvetica Neue";
@@ -1016,8 +1016,8 @@ ul {
   color: #303336;
 }
 .btn.btn-contained.btn-red {
-  background-color: #bf222b;
-  border-color: #bf222b;
+  background-color: #c02329;
+  border-color: #c02329;
   color: #fff;
 }
 .btn.btn-contained.btn-red:hover {
@@ -1042,12 +1042,12 @@ ul {
   color: #303336;
 }
 .btn.btn-outline.btn-red {
-  color: #bf222b;
-  border-color: #bf222b;
+  color: #c02329;
+  border-color: #c02329;
 }
 .btn.btn-outline.btn-red:hover {
-  background-color: #bf222b;
-  border-color: #bf222b;
+  background-color: #c02329;
+  border-color: #c02329;
   color: #fff;
 }
 .btn.btn-sm {
@@ -1142,7 +1142,7 @@ ul {
   display: none;
 }
 .mobile-menu-drawer-wrapper .mobile-naivgation-wrapper .mobile-navigation-list.active a {
-  color: #bf222b;
+  color: #c02329;
 }
 .mobile-menu-drawer-wrapper .mobile-menu-login-wrapper {
   border-top: 1px solid #303336;
@@ -1212,7 +1212,7 @@ ul {
 .featured-product-inner-wrapper .featured-product-information .product-type {
   font-size: 0.8rem;
   font-family: "Brandon Grotesque Medium", "Helvetica Neue";
-  color: #bf222b;
+  color: #c02329;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -1256,7 +1256,7 @@ ul {
   letter-spacing: 1px;
 }
 .featured-product-inner-wrapper .featured-product-information .card-footer .product-price-wrapper .original-price + .discounted-price {
-  color: #bf222b;
+  color: #c02329;
   font-size: 18px;
   font-weight: 500;
   font-family: "Brandon Grotesque Medium", "Helvetica Neue";
@@ -1569,7 +1569,7 @@ ul {
   gap: 5px;
 }
 .product-gallery-wrapper .product-gallery-image-wrapper .product-tag-wrapper .tag-name {
-  background-color: #bf222b;
+  background-color: #c02329;
   padding: 6px 8px;
   color: #fff;
   font-size: 0.875rem;
@@ -1749,7 +1749,7 @@ ul {
   z-index: 10;
 }
 .product-tag-wrapper .tag-name {
-  background-color: #bf222b;
+  background-color: #c02329;
   padding: 6px 8px;
   color: #fff;
   font-size: 0.875rem;
@@ -1934,7 +1934,7 @@ ul {
   gap: 5px;
 }
 .cart-drawer .cart-content-wrapper .cart-items-wrapper .cart-item-details .cart-item-image-wrapper .cart-item-product-tag-wrapper .tag-name {
-  background-color: #bf222b;
+  background-color: #c02329;
   padding: 3px 6px;
   color: #fff;
   font-size: 0.875rem;
@@ -2350,7 +2350,7 @@ ul {
   gap: 5px;
 }
 .product-show-case-wrapper .show-case-inner-wrapper .show-case-product-content-wrapper .show-case-product-image-wrapper .product-tag-wrapper .tag-name {
-  background-color: #bf222b;
+  background-color: #c02329;
   padding: 6px 8px;
   color: #fff;
   font-size: 0.875rem;
@@ -2408,7 +2408,7 @@ ul {
   font-weight: 600;
 }
 .product-show-case-wrapper .show-case-inner-wrapper .show-case-product-content-wrapper .show-case-product-information .show-case-product-price-wrapper .original-price + .discounted-price {
-  color: #bf222b;
+  color: #c02329;
 }
 .product-show-case-wrapper .show-case-inner-wrapper .show-case-product-content-wrapper .show-case-product-information .show-case-product-description {
   font-size: 1rem;
@@ -2733,7 +2733,7 @@ ul {
   justify-content: center;
 }
 .product-details-section .product-details-wrapper .product-image-wrapper .product-gallery-swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #bf222b;
+  background-color: #c02329;
 }
 .product-details-section .product-details-wrapper .product-image-wrapper .product-detail-image-content {
   flex-direction: column;
@@ -2748,7 +2748,7 @@ ul {
   z-index: 10;
 }
 .product-details-section .product-details-wrapper .product-image-wrapper .product-detail-image-content .product-tag-wrapper .tag-name {
-  background-color: #bf222b;
+  background-color: #c02329;
   padding: 6px 8px;
   color: #fff;
   font-size: 0.875rem;
@@ -2810,7 +2810,7 @@ ul {
   font-size: 21px;
 }
 .product-details-section .product-details-wrapper .product-content-wrapper .product-inner-content-wrapper .product-price-wrapper .original-price + .discounted-price {
-  color: #bf222b;
+  color: #c02329;
   font-size: 21px;
 }
 .product-details-section .product-details-wrapper .product-content-wrapper .product-inner-content-wrapper .product-description-wrapper {
@@ -3050,7 +3050,7 @@ ul {
   font-size: 21px;
 }
 .product-details-section .product-sticky-bottom .product-sticky-bottom-wrapper .product-bottom-left .bottom-product-price .product-price-wrapper .original-price + .discounted-price {
-  color: #bf222b;
+  color: #c02329;
   font-size: 21px;
 }
 .product-details-section .product-sticky-bottom .product-sticky-bottom-wrapper .bottom-product-details-btn-group {
@@ -3179,7 +3179,7 @@ ul {
 .slider-banner-section .banner-slider-pagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
-  background-color: #bf222b;
+  background-color: #c02329;
 }
 .slider-banner-section .banner-slider-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
   width: 18px;
