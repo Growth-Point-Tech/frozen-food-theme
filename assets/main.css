@@ -638,15 +638,9 @@ ul {
     align-items: center;
     transition: transform 0.2s linear;
   }
-  .footer-wrapper .footer-col .footer-link-wrapper .footer-navigation-content .footer-navigation-link-wrapper .footer-title-wrapper .footer-link-icon {
-    display: unset;
-  }
   .footer-wrapper .footer-col .footer-link-wrapper .footer-navigation-content .footer-navigation-link-wrapper .footer-title-wrapper.active .footer-link-icon {
     transform: rotate(90deg);
   }
-}
-.footer-wrapper .footer-col .footer-link-wrapper .footer-navigation-content .footer-navigation-link-wrapper .footer-title-wrapper .footer-link-icon {
-  display: none;
 }
 .footer-wrapper .footer-col .footer-link-wrapper .footer-navigation-content .footer-navigation-link-wrapper .footer-link-content {
   display: flex;

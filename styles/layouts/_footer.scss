@@ -193,19 +193,12 @@
               justify-content: space-between;
               align-items: center;
               transition: transform 0.2s linear;
-              .footer-link-icon {
-                display: unset;
-              }
 
               &.active {
                 .footer-link-icon {
                   transform: rotate(90deg);
                 }
               }
-            }
-
-            .footer-link-icon {
-              display: none;
             }
           }
           .footer-link-content {
