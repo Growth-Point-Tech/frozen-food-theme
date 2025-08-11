@@ -58,13 +58,13 @@
         "full_width": true,
         "banner-height": "small",
         "banner-parallax": true,
-        "banner-image": "shopify://shop_images/Untitled_design_4100x_df8c80cc-2011-4388-b21a-f58c27be1425.webp",
+        "banner-image": "shopify://shop_images/bg-image-updated.png",
         "feature-banner-title": "Need More Information",
         "feature-banner-subtitle": "If you have any other questions, feel free to contact our customer service team.",
         "button-text": "",
         "button-link": "",
         "banner-overlay": true,
-        "overlay-opacity": 0.3
+        "overlay-opacity": 0.6
       }
     }
   },
