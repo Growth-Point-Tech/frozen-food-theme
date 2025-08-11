@@ -34,9 +34,9 @@
       "name": "Product List",
       "settings": {
         "dark_mode": false,
-        "product_slider": true,
+        "product_slider": false,
         "collection": "home-page-product",
-        "section-title": "Frozen Food"
+        "section-title": ""
       }
     },
     "product_list_XzWYfr": {

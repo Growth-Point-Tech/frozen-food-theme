@@ -89,15 +89,15 @@
       "name": "Banner",
       "settings": {
         "full_width": true,
-        "banner-height": "medium",
+        "banner-height": "small",
         "banner-parallax": true,
-        "banner-image": "shopify://shop_images/Untitled_design_4100x_df8c80cc-2011-4388-b21a-f58c27be1425.webp",
+        "banner-image": "shopify://shop_images/bg-image-updated.png",
         "feature-banner-title": "Members Exclusive Discount",
         "feature-banner-subtitle": "Enjoy member-only deals and savings on every purchase.",
         "button-text": "Become a Member",
         "button-link": "",
         "banner-overlay": true,
-        "overlay-opacity": 0.5
+        "overlay-opacity": 0.6
       }
     }
   },
