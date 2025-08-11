@@ -56,7 +56,7 @@
       "name": "Banner",
       "settings": {
         "full_width": true,
-        "banner-height": "small",
+        "banner-height": "medium",
         "banner-parallax": true,
         "banner-image": "shopify://shop_images/bg-image-updated.png",
         "feature-banner-title": "Need More Information",
