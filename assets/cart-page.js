@@ -48,18 +48,15 @@ document.addEventListener("DOMContentLoaded", function () {
   // Debounce map per item key
   const quantityUpdateTimers = {};
 
-  function setCartLoading(isLoading) {
-    const wrapper = document.querySelector(".cart-main-wrapper");
-    if (!wrapper) return;
-    if (isLoading) {
-      wrapper.classList.add("loading");
-      wrapper.classList.remove("loading-done");
-    } else {
-      wrapper.classList.remove("loading");
-      wrapper.classList.add("loading-done");
-      setTimeout(() => {
-        wrapper.classList.remove("loading-done");
-      }, 300); // matches the transition duration
+  // Utility to show/hide item loader by toggling 'hidden' class
+  function setItemLoading(itemKey, isLoading) {
+    const desktopLoader = document.getElementById(`item-loader-${itemKey.replace(/:/g, '-')}`);
+    const mobileLoader = document.getElementById(`item-loader-mobile-${itemKey.replace(/:/g, '-')}`);
+    if (desktopLoader) {
+      desktopLoader.classList.toggle('hidden', !isLoading);
+    }
+    if (mobileLoader) {
+      mobileLoader.classList.toggle('hidden', !isLoading);
     }
   }
 
@@ -72,16 +69,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const tempDiv = document.createElement("div");
         tempDiv.innerHTML = data["cart-main"];
         const newSection = tempDiv.querySelector(".cart-main-wrapper");
-        if (newSection) {
-          document.querySelector(".cart-main-wrapper").replaceWith(newSection);
-        }
+        document.querySelector(".cart-main-wrapper").replaceWith(newSection);
         attachCartPageListeners();
-        if (window.updateCartCount) window.updateCartCount();
+        initializeAgreementCheckbox();
+        window.updateCartCount();
       });
   }
 
   function updateCartItem(key, newQty) {
-    setCartLoading(true);
+    setItemLoading(key, true);
     fetch("/cart/change.js", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -100,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
         alert(err.message || "Error updating cart. Please try again.");
         fetchAndRenderCartSection(); // Try to re-sync the DOM anyway
       })
-      .finally(() => setCartLoading(false));
+      .finally(() => setItemLoading(key, false));
   }
 
   function attachCartPageListeners() {
@@ -108,17 +104,17 @@ document.addEventListener("DOMContentLoaded", function () {
       .querySelectorAll(".cart-item, .cart-item-card")
       .forEach(function (itemElem) {
         const key = itemElem.dataset.key;
-        const qtyInput = itemElem.querySelector(".cart-qty-input");
-        const minusBtn = itemElem.querySelector(".cart-qty-minus");
-        const plusBtn = itemElem.querySelector(".cart-qty-plus");
+        const qtyInput = itemElem.querySelector(".quantity-input");
+        const minusBtn = itemElem.querySelector(".qty-btn.minus");
+        const plusBtn = itemElem.querySelector(".qty-btn.plus");
         const removeBtn = itemElem.querySelector(".cart-remove-btn");
 
         if (minusBtn) {
           minusBtn.addEventListener("click", function () {
-            let qty = parseInt(qtyInput.value, 10);
+            let qty = parseInt(qtyInput.textContent, 10);
             if (qty > 1) {
               qty--;
-              qtyInput.value = qty;
+              qtyInput.textContent = qty;
               if (quantityUpdateTimers[key])
                 clearTimeout(quantityUpdateTimers[key]);
               quantityUpdateTimers[key] = setTimeout(
@@ -130,9 +126,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (plusBtn) {
           plusBtn.addEventListener("click", function () {
-            let qty = parseInt(qtyInput.value, 10);
+            let qty = parseInt(qtyInput.textContent, 10);
             qty++;
-            qtyInput.value = qty;
+            qtyInput.textContent = qty;
             if (quantityUpdateTimers[key])
               clearTimeout(quantityUpdateTimers[key]);
             quantityUpdateTimers[key] = setTimeout(
@@ -141,18 +137,8 @@ document.addEventListener("DOMContentLoaded", function () {
             );
           });
         }
-        if (qtyInput) {
-          qtyInput.addEventListener("change", function () {
-            let qty = Math.max(1, parseInt(qtyInput.value, 10));
-            qtyInput.value = qty;
-            if (quantityUpdateTimers[key])
-              clearTimeout(quantityUpdateTimers[key]);
-            quantityUpdateTimers[key] = setTimeout(
-              () => updateCartItem(key, qty),
-              400,
-            );
-          });
-        }
+        // Note: quantity-input is now a div, not an input field
+        // Quantity changes are handled by the +/- buttons
         if (removeBtn) {
           removeBtn.addEventListener("click", function () {
             updateCartItem(key, 0);
@@ -164,24 +150,40 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initial attach
   attachCartPageListeners();
 
-  const cartDrawerButton = document.querySelector(".add-to-cart-icon-group"); // Update the selector
-  const cartDrawer = document.getElementById("cart-drawer");
-
-  if (cartDrawerButton) {
-    cartDrawerButton.addEventListener("click", function (event) {
-      const currentPage = window.location.pathname;
-
-      // Check if the user is on the cart page
-      if (currentPage === "{{ routes.cart_url }}") {
-        event.preventDefault(); // Prevent the default drawer opening behavior
-        window.location.reload(); // Reload the cart page
+  // Agreement checkbox functionality
+  function initializeAgreementCheckbox() {
+    const agreementCheckbox = document.getElementById('cart-agreement-checkbox');
+    const checkoutBtn = document.getElementById('cart-checkout-btn');
+    
+    if (!agreementCheckbox || !checkoutBtn) return;
+    
+    function updateCheckoutButtonState() {
+      if (agreementCheckbox.checked) {
+        checkoutBtn.removeAttribute('disabled');
+        checkoutBtn.classList.remove('disabled');
       } else {
-        // Open the cart drawer if the user is not on the cart page
-        if (cartDrawer) {
-          event.preventDefault(); // Prevent default behavior
-          cartDrawer.classList.add("active"); // Add a class to open the drawer
-        }
+        checkoutBtn.setAttribute('disabled', 'disabled');
+        checkoutBtn.classList.add('disabled');
+      }
+    }
+    
+    // Set initial state
+    updateCheckoutButtonState();
+    
+    // Add event listener
+    agreementCheckbox.addEventListener('change', updateCheckoutButtonState);
+    
+    // Prevent checkout if checkbox is unchecked
+    checkoutBtn.addEventListener('click', function(e) {
+      if (!agreementCheckbox.checked) {
+        e.preventDefault();
+        e.stopPropagation();
+        alert('Please agree to the Terms and Conditions and Privacy Policy before proceeding to checkout.');
+        return false;
       }
     });
   }
+
+  // Initialize agreement checkbox
+  initializeAgreementCheckbox();
 });
