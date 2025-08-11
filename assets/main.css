@@ -630,6 +630,9 @@ ul {
   font-family: "Scotch Display", "Helvetica Neue";
   letter-spacing: 2px;
 }
+.footer-wrapper .footer-col .footer-link-wrapper .footer-navigation-content .footer-navigation-link-wrapper .footer-title-wrapper .footer-link-icon {
+  display: none;
+}
 @media (max-width: 1023px) {
   .footer-wrapper .footer-col .footer-link-wrapper .footer-navigation-content .footer-navigation-link-wrapper .footer-title-wrapper {
     margin-bottom: 0;
@@ -637,6 +640,9 @@ ul {
     justify-content: space-between;
     align-items: center;
     transition: transform 0.2s linear;
+  }
+  .footer-wrapper .footer-col .footer-link-wrapper .footer-navigation-content .footer-navigation-link-wrapper .footer-title-wrapper .footer-link-icon {
+    display: block;
   }
   .footer-wrapper .footer-col .footer-link-wrapper .footer-navigation-content .footer-navigation-link-wrapper .footer-title-wrapper.active .footer-link-icon {
     transform: rotate(90deg);

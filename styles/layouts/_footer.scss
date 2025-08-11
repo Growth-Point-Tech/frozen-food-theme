@@ -187,12 +187,20 @@
             font-family: $font-family-scotch;
             letter-spacing: 2px;
 
+            .footer-link-icon {
+              display: none;
+            }
+
             @include responsive(tablet) {
               margin-bottom: 0;
               display: flex;
               justify-content: space-between;
               align-items: center;
               transition: transform 0.2s linear;
+
+              .footer-link-icon {
+                display: block;
+              }
 
               &.active {
                 .footer-link-icon {
