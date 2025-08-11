@@ -1211,8 +1211,10 @@ ul {
 }
 .featured-product-inner-wrapper .featured-product-information .product-type {
   font-size: 0.8rem;
-  font-weight: 400;
-  color: #720519;
+  font-family: "Brandon Grotesque Medium", "Helvetica Neue";
+  color: #bf222b;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 .featured-product-inner-wrapper .featured-product-information a {
   color: unset;
@@ -3144,6 +3146,9 @@ ul {
 }
 .gift-card-section .gift-card-wrapper .gift-card-list .featured-product-inner-wrapper .featured-product-information {
   margin-top: 10px !important;
+}
+.gift-card-section .gift-card-wrapper .gift-card-list .featured-product-inner-wrapper .featured-product-information .product-type {
+  letter-spacing: 1px;
 }
 .gift-card-section .gift-card-wrapper .no-gift-card-wrapper {
   display: flex;

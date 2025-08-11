@@ -62,8 +62,10 @@
 
     .product-type {
       font-size: 0.8rem;
-      font-weight: 400;
-      color: $dark-red-color;
+      font-family: $font-family-brandon-med;
+      color: $red-color;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
     a {

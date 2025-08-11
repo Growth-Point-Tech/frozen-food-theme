@@ -35,7 +35,7 @@
       "settings": {
         "dark_mode": false,
         "product_slider": false,
-        "collection": "bundle-list",
+        "collection": "homepage-bundle-collections",
         "section-title": ""
       }
     },
@@ -54,7 +54,7 @@
       "name": "Banner",
       "settings": {
         "full_width": true,
-        "banner-height": "small",
+        "banner-height": "medium",
         "banner-parallax": true,
         "banner-image": "shopify://shop_images/momo_sauces01_4100x_8d1e01c0-2544-4cd6-b696-71b2ba754c71.webp",
         "feature-banner-title": "Digital Products",
