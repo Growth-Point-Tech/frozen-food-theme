@@ -46,9 +46,9 @@
       "name": "Product List",
       "settings": {
         "dark_mode": true,
-        "product_slider": false,
-        "collection": "bundle-list",
-        "section-title": "Our Bundles"
+        "product_slider": true,
+        "collection": "homepage-bundle-collections",
+        "section-title": "Also Explore Bundles"
       }
     },
     "banner_whweaF": {

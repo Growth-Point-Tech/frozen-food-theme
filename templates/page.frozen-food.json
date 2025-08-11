@@ -44,7 +44,7 @@
       "name": "Product List",
       "settings": {
         "dark_mode": true,
-        "product_slider": false,
+        "product_slider": true,
         "collection": "homepage-bundle-collections",
         "section-title": "Also Explore Our Bundles"
       }
