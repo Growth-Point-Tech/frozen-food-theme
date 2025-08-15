@@ -1968,6 +1968,7 @@ ul {
   flex-direction: column;
   gap: 5px;
   font-family: "Brandon Grotesque", "Helvetica Neue";
+  margin-bottom: 10px;
 }
 .cart-drawer .cart-content-wrapper .cart-footer .terms-condition-wrapper .checkbox-wrapper {
   display: flex;
@@ -1987,6 +1988,15 @@ ul {
 .cart-drawer .cart-content-wrapper .cart-footer .btn.disable {
   opacity: 0.5;
   cursor: not-allowed;
+}
+.cart-drawer .cart-content-wrapper .cart-footer .view-cart-btn {
+  border: 1px solid #303336 !important;
+  color: #303336 !important;
+  letter-spacing: 1px;
+}
+.cart-drawer .cart-content-wrapper .cart-footer .view-cart-btn:hover {
+  background-color: #303336;
+  color: #fff !important;
 }
 .cart-drawer .cart-content-wrapper .cart-empty-wrapper {
   height: 100%;

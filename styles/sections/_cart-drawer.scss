@@ -86,7 +86,7 @@
           align-items: center;
           justify-content: center;
           z-index: 10;
-          
+
           &.active {
             display: flex;
           }
@@ -228,6 +228,7 @@
         flex-direction: column;
         gap: 5px;
         font-family: $font-family-brandon;
+        margin-bottom: 10px;
         .checkbox-wrapper {
           display: flex;
           align-items: center;
@@ -248,6 +249,17 @@
         &.disable {
           opacity: 0.5;
           cursor: not-allowed;
+        }
+      }
+
+      .view-cart-btn {
+        border: 1px solid $dark-primary-textColor !important;
+        color: $dark-primary-textColor !important;
+        letter-spacing: 1px;
+
+        &:hover {
+          background-color: $dark-primary-textColor;
+          color: $light-primary-textColor !important;
         }
       }
     }
