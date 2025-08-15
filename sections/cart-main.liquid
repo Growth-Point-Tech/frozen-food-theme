@@ -2,6 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col">
+        <div class="cart-page-section-title-wrapper">
+          <div class="cart-page-title">Cart</div>
+        </div>
+      </div>
+      <div class="col">
         <div class="cart-main-wrapper">
           {% if cart.item_count == 0 %}
             <div class="cart-empty-wrapper">
@@ -18,41 +23,65 @@
                 Before proceed to checkout you must add some products to your shopping cart.<br>
                 You will find a lot of interesting products on our “Shop” page.
               </p>
-              <a href="/collections/all" class="cart-empty-btn">RETURN TO SHOP</a>
+              <a href="{{ routes.all_products_collection_url }}" class="cart-empty-btn">RETURN TO SHOP</a>
             </div>
           {% else %}
             <!-- Unified div-based list for desktop and mobile -->
             <div class="cart-items">
-              <div class="cart-list-header" role="row">
-                <div class="col-product" role="columnheader">Product</div>
-                <div class="col-price" role="columnheader">Price</div>
-                <div class="col-qty" role="columnheader">Quantity</div>
-                <div class="col-total" role="columnheader">Total</div>
-              </div>
               {% for item in cart.items %}
+                {% assign variant_image = item.image
+                  | default: item.variant.image
+                  | default: item.product.featured_image
+                %}
+                {% assign show_variants = false %}
+
+                {% for option in item.options_with_values %}
+                  {% unless option.value == 'Default Title' or option.value == 'Default' or option.name == 'Title' %}
+                    {% assign show_variants = true %}
+                  {% endunless %}
+                {% endfor %}
+
+                {% if item.selling_plan_allocation.selling_plan.name %}
+                  {% assign show_variants = true %}
+                {% endif %}
                 <div class="cart-item cart-item-row" data-key="{{ item.key }}" role="row">
                   <div class="cart-product-info" role="cell">
                     <div class="item-loader hidden" id="item-loader-{{ item.key | replace: ':', '-' }}">
                       <div class="loader"></div>
                     </div>
-                    <img src="{{ item.image | image_url }}" alt="{{ item.title }}" width="70" height="70">
-                    <div>
+                    <img
+                      src="{{ variant_image | image_url }}"
+                      alt="{{ item.title }}"
+                      width="70"
+                      height="70"
+                      class="cart-page-item-image"
+                    >
+                    <div class="cart-page-title-wrapper">
                       <div class="cart-title-row">
                         <a href="{{ item.url }}" class="cart-item-title">{{ item.title }}</a>
-                        <button type="button" class="cart-remove-btn" title="Remove">
-                          <img src="{{ 'delete.png' | asset_url }}" alt="Remove" width="14" height="14">
-                        </button>
+                        {% if show_variants %}
+                          <div class="cart-item-variation-list">
+                            {% for option in item.options_with_values %}
+                              {% if option.value != 'Default Title' %}
+                                <span class="cart-item-variant">{{ option.value }}</span>
+                              {% endif %}
+                            {% endfor %}
+
+                            <span class="cart-item-variant">
+                              {{- item.selling_plan_allocation.selling_plan.name -}}
+                            </span>
+                          </div>
+                        {% endif %}
                       </div>
-                      {% if item.variant.title != 'Default Title' %}
-                        <div class="cart-item-variant">{{ item.variant.title }}</div>
-                      {% endif %}
+                      <div class="cart-page-qty-wrapper">
+                        {% render 'product-quantity', product: item, appliedQty: item.quantity, index: forloop.index %}
+                      </div>
                     </div>
                   </div>
                   <div class="cart-item-meta">
-                    <div class="cart-item-price" role="cell">{{ item.price | money }}</div>
-                    <div class="cart-item-qty" role="cell">
-                      {% render 'product-quantity', product: item, appliedQty: item.quantity, index: forloop.index %}
-                    </div>
+                    <button type="button" class="cart-remove-btn" title="Remove">
+                      <img src="{{ 'cancel.png' | asset_url }}" alt="Remove" width="14" height="14">
+                    </button>
                     <div class="cart-item-line-total" role="cell">{{ item.line_price | money }}</div>
                   </div>
                 </div>
@@ -62,19 +91,12 @@
             <div class="cart-summary-wrapper">
               <div class="cart-summary">
                 <p class="cart-subtotal">
-                  <strong>SUBTOTAL:</strong> <span id="cart-subtotal">{{ cart.total_price | money }}</span>
+                  <strong>SUBTOTAL</strong> <span id="cart-subtotal">{{ cart.total_price | money }}</span>
                 </p>
                 <p class="cart-taxes">Taxes, shipping and discounts codes calculated at checkout</p>
               </div>
-              <div class="cart-agreement-wrapper">
-                <label class="cart-agreement-checkbox">
-                  <input type="checkbox" id="cart-agreement-checkbox" checked>
-                  <span class="checkmark"></span>
-                  <span class="agreement-text">I agree to the <a href="/pages/terms" target="_blank">Terms and Conditions</a> and <a href="/pages/privacy" target="_blank">Privacy Policy</a></span>
-                </label>
-              </div>
-              <a href="/checkout" class="cart-checkout-btn" id="cart-checkout-btn">Check Out</a>
-              <a href="/collections/all" class="return-to-shop">Continue Shopping</a>
+
+              <a href="/checkout" class="cart-checkout-btn" id="cart-checkout-btn">Proceed to checkout</a>
             </div>
             <script>
               window.Shopify = window.Shopify || {};
