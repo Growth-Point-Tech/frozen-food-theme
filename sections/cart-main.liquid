@@ -1,0 +1,89 @@
+<div class="cart-main-section">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="cart-main-wrapper">
+          {% if cart.item_count == 0 %}
+            <div class="cart-empty-wrapper">
+              <div class="cart-empty-icon">
+                <svg width="64" height="64" viewBox="0 0 32 32" fill="none" stroke="#d32f2f" stroke-width="2">
+                  <rect x="6" y="12" width="20" height="14" rx="3" />
+                  <path d="M10 12V9a6 6 0 1 1 12 0v3" />
+                  <circle cx="16" cy="20" r="2" />
+                  <path d="M16 22v2" />
+                </svg>
+              </div>
+              <h2 class="cart-empty-title">YOUR CART IS EMPTY.</h2>
+              <p class="cart-empty-desc">
+                Before proceed to checkout you must add some products to your shopping cart.<br>
+                You will find a lot of interesting products on our “Shop” page.
+              </p>
+              <a href="/collections/all" class="cart-empty-btn">RETURN TO SHOP</a>
+            </div>
+          {% else %}
+            <!-- Unified div-based list for desktop and mobile -->
+            <div class="cart-items">
+              <div class="cart-list-header" role="row">
+                <div class="col-product" role="columnheader">Product</div>
+                <div class="col-price" role="columnheader">Price</div>
+                <div class="col-qty" role="columnheader">Quantity</div>
+                <div class="col-total" role="columnheader">Total</div>
+              </div>
+              {% for item in cart.items %}
+                <div class="cart-item cart-item-row" data-key="{{ item.key }}" role="row">
+                  <div class="cart-product-info" role="cell">
+                    <div class="item-loader hidden" id="item-loader-{{ item.key | replace: ':', '-' }}">
+                      <div class="loader"></div>
+                    </div>
+                    <img src="{{ item.image | image_url }}" alt="{{ item.title }}" width="70" height="70">
+                    <div>
+                      <div class="cart-title-row">
+                        <a href="{{ item.url }}" class="cart-item-title">{{ item.title }}</a>
+                        <button type="button" class="cart-remove-btn" title="Remove">
+                          <img src="{{ 'delete.png' | asset_url }}" alt="Remove" width="14" height="14">
+                        </button>
+                      </div>
+                      {% if item.variant.title != 'Default Title' %}
+                        <div class="cart-item-variant">{{ item.variant.title }}</div>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <div class="cart-item-meta">
+                    <div class="cart-item-price" role="cell">{{ item.price | money }}</div>
+                    <div class="cart-item-qty" role="cell">
+                      {% render 'product-quantity', product: item, appliedQty: item.quantity, index: forloop.index %}
+                    </div>
+                    <div class="cart-item-line-total" role="cell">{{ item.line_price | money }}</div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+
+            <div class="cart-summary-wrapper">
+              <div class="cart-summary">
+                <p class="cart-subtotal">
+                  <strong>SUBTOTAL:</strong> <span id="cart-subtotal">{{ cart.total_price | money }}</span>
+                </p>
+                <p class="cart-taxes">Taxes, shipping and discounts codes calculated at checkout</p>
+              </div>
+              <div class="cart-agreement-wrapper">
+                <label class="cart-agreement-checkbox">
+                  <input type="checkbox" id="cart-agreement-checkbox" checked>
+                  <span class="checkmark"></span>
+                  <span class="agreement-text">I agree to the <a href="/pages/terms" target="_blank">Terms and Conditions</a> and <a href="/pages/privacy" target="_blank">Privacy Policy</a></span>
+                </label>
+              </div>
+              <a href="/checkout" class="cart-checkout-btn" id="cart-checkout-btn">Check Out</a>
+              <a href="/collections/all" class="return-to-shop">Continue Shopping</a>
+            </div>
+            <script>
+              window.Shopify = window.Shopify || {};
+              Shopify.money_format = '{{ shop.money_format | escape }}';
+            </script>
+            <script src="{{ 'cart-page.js' | asset_url }}" defer></script>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
