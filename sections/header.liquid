@@ -100,6 +100,9 @@
                     width="22"
                     aria-label="checkout"
                   >
+                  <span class="cart-count-number {% if cart.item_count == 0 %}hidden{% endif %}" id="cart-item-count">
+                    {{ cart.item_count }}
+                  </span>
                 </a>
               {% else %}
                 <div class="add-to-cart-icon-group">
