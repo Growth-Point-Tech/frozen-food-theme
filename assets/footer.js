@@ -21,10 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const observer = new IntersectionObserver(
     (entries) => {
-      if (!window.enableFooterAnimation) {
-        footer.classList.add("dark-bg");
-        return;
-      }
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           footer.classList.add("dark-bg");
