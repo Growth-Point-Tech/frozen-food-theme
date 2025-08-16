@@ -448,7 +448,6 @@ ul {
   padding-bottom: 20px;
   transition: all 0.3s ease-in;
   color: #303336;
-  z-index: 30;
   position: relative;
 }
 .footer-wrapper.dark-bg {
