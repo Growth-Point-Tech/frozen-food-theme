@@ -2,6 +2,8 @@ const mainOverlay = document.querySelector(".main-overlay");
 const body = document.getElementById("body");
 gsap.registerPlugin(ScrollTrigger);
 
+window.enableFooterAnimation = true;
+
 window.whenDrawerOpen = (showOverlay = true) => {
   if (mainOverlay & showOverlay) {
     mainOverlay.classList.remove("disable-overlay");
