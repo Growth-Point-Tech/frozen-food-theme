@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(async (res) => await window.handleFetchResponse(res))
       .then(async () => await fetchAndRenderCartSection())
       .catch((err) => {
-        alert(err.message || "Error updating cart. Please try again.");
+        window.showToast(err.message || "error");
         fetchAndRenderCartSection(); // Try to re-sync the DOM anyway
       })
       .finally(() => setItemLoading(key, false));
