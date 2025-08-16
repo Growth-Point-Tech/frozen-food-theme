@@ -1,0 +1,60 @@
+<div class="collection-page-section">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        {% if section.blocks.size > 0 %}
+          <div class="no-collection-found-wrapper">No COllection Found</div>
+        {% else %}
+          <div class="collection-wrapper">
+            {% for block in section.blocks %}
+              <a href="#" class="collection-item">
+                <img
+                  src="{{ block.settings.collection_image | image_url}}"
+                  width="100"
+                  height="100"
+                  alt="Collection Image"
+                  class="collection-image"
+                >
+                <div class="collection-title">
+                  {{ block.settings.collection_title }}
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collections",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "text_slide",
+      "name": "Collections",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "collection_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "collection_title",
+          "label": "Title"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Collections",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

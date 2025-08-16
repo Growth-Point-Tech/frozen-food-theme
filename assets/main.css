@@ -3898,3 +3898,10 @@ ul {
   left: auto;
   transform: none;
 }
+
+.collection-page-section .no-collection-found-wrapper {
+  margin: 50px auto;
+  font-size: 30px;
+  font-family: "Brandon Grotesque", "Helvetica Neue";
+  text-align: center;
+}

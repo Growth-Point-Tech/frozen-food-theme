@@ -1,0 +1,13 @@
+@use "abstracts/_breakpoints" as *;
+@use "abstracts/_variables" as *;
+.collection-page-section {
+  .no-collection-found-wrapper {
+    margin: 50px auto;
+    font-size: 30px;
+    font-family: $font-family-brandon;
+    text-align: center;
+  }
+
+  .collection-wrapper {
+  }
+}

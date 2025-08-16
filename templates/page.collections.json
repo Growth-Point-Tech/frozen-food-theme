@@ -1,0 +1,73 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner_8NrqTd": {
+      "type": "banner",
+      "name": "Banner",
+      "settings": {
+        "full_width": true,
+        "banner-height": "small",
+        "banner-parallax": true,
+        "banner-image": "shopify://shop_images/momo_sauces01_4100x_8d1e01c0-2544-4cd6-b696-71b2ba754c71.webp",
+        "feature-banner-title": "Our Collections",
+        "feature-banner-subtitle": "View Our All The Collections",
+        "button-text": "",
+        "button-link": "",
+        "banner-overlay": true,
+        "overlay-opacity": 0.6
+      }
+    },
+    "main": {
+      "type": "collection-page",
+      "blocks": {
+        "text_slide_YbUEf4": {
+          "type": "text_slide",
+          "settings": {
+            "collection_image": "shopify://shop_images/mild-momo-sauce.webp",
+            "collection_title": "Sauce"
+          }
+        },
+        "text_slide_WTtnAc": {
+          "type": "text_slide",
+          "settings": {
+            "collection_image": "shopify://shop_images/non-veg-momos-with-sauce.png",
+            "collection_title": "Bundles"
+          }
+        },
+        "text_slide_P3gakC": {
+          "type": "text_slide",
+          "settings": {
+            "collection_image": "shopify://shop_images/8_1296x_28e75b06-8f35-4027-8a79-47f1a0a25ec3.webp",
+            "collection_title": "Digital Product"
+          }
+        },
+        "text_slide_p3VNV9": {
+          "type": "text_slide",
+          "settings": {
+            "collection_image": "shopify://shop_images/beef-momo-front-back.webp",
+            "collection_title": "Frozen Food"
+          }
+        }
+      },
+      "block_order": [
+        "text_slide_YbUEf4",
+        "text_slide_WTtnAc",
+        "text_slide_P3gakC",
+        "text_slide_p3VNV9"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "banner_8NrqTd",
+    "main"
+  ]
+}
