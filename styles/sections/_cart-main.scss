@@ -92,7 +92,6 @@
         transition: color 0.2s;
 
         &:hover {
-          color: $red-color;
           text-decoration: underline;
         }
       }
@@ -112,6 +111,13 @@
     .cart-page-qty-wrapper {
       width: 100px;
       margin-top: 20px;
+      &.disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        .add-to-cart-qty-wrapper {
+          pointer-events: none;
+        }
+      }
       .add-to-cart-qty-wrapper {
         background-color: transparent;
       }
@@ -146,6 +152,10 @@
     align-items: center;
     justify-content: center;
     transition: opacity 0.2s;
+    &.disabled {
+      cursor: not-allowed;
+      opacity: 0.4;
+    }
 
     img {
       width: 14px;

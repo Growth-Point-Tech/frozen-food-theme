@@ -3696,7 +3696,6 @@ ul {
   transition: color 0.2s;
 }
 .cart-items .cart-page-title-wrapper .cart-title-row .cart-item-title:hover {
-  color: #c02329;
   text-decoration: underline;
 }
 .cart-items .cart-page-title-wrapper .cart-title-row .cart-item-variation-list .cart-item-variant {
@@ -3710,6 +3709,13 @@ ul {
 .cart-items .cart-page-title-wrapper .cart-page-qty-wrapper {
   width: 100px;
   margin-top: 20px;
+}
+.cart-items .cart-page-title-wrapper .cart-page-qty-wrapper.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.cart-items .cart-page-title-wrapper .cart-page-qty-wrapper.disabled .add-to-cart-qty-wrapper {
+  pointer-events: none;
 }
 .cart-items .cart-page-title-wrapper .cart-page-qty-wrapper .add-to-cart-qty-wrapper {
   background-color: transparent;
@@ -3736,6 +3742,10 @@ ul {
   align-items: center;
   justify-content: center;
   transition: opacity 0.2s;
+}
+.cart-items .cart-remove-btn.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
 }
 .cart-items .cart-remove-btn img {
   width: 14px;
