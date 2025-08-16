@@ -1,6 +1,7 @@
 @use "abstracts/_breakpoints" as *;
 @use "abstracts/_variables" as *;
 .collection-page-section {
+  overflow: hidden;
   .no-collection-found-wrapper {
     margin: 50px auto;
     font-size: 30px;
@@ -9,5 +10,36 @@
   }
 
   .collection-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 100px 0;
+    gap: 30px 20px;
+    flex-wrap: wrap;
+
+    .collection-item {
+      flex-direction: column;
+      color: $dark-primary-textColor;
+      text-decoration: none;
+      &:hover {
+        .collection-title {
+          text-decoration: underline;
+        }
+      }
+
+      .collection-image {
+        width: 100%;
+        height: 600px;
+        border-radius: 10px;
+      }
+
+      .collection-title {
+        font-family: $font-family-brandon-med;
+        font-size: 18px;
+        margin-top: 20px;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+    }
   }
 }

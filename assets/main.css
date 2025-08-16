@@ -3899,9 +3899,40 @@ ul {
   transform: none;
 }
 
+.collection-page-section {
+  overflow: hidden;
+}
 .collection-page-section .no-collection-found-wrapper {
   margin: 50px auto;
   font-size: 30px;
   font-family: "Brandon Grotesque", "Helvetica Neue";
   text-align: center;
+}
+.collection-page-section .collection-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 100px 0;
+  gap: 30px 20px;
+  flex-wrap: wrap;
+}
+.collection-page-section .collection-wrapper .collection-item {
+  flex-direction: column;
+  color: #303336;
+  text-decoration: none;
+}
+.collection-page-section .collection-wrapper .collection-item:hover .collection-title {
+  text-decoration: underline;
+}
+.collection-page-section .collection-wrapper .collection-item .collection-image {
+  width: 100%;
+  height: 600px;
+  border-radius: 10px;
+}
+.collection-page-section .collection-wrapper .collection-item .collection-title {
+  font-family: "Brandon Grotesque Medium", "Helvetica Neue";
+  font-size: 18px;
+  margin-top: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }

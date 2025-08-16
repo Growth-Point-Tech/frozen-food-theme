@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        {% if section.blocks.size > 0 %}
+        {% if section.blocks.size == 0 %}
           <div class="no-collection-found-wrapper">No COllection Found</div>
         {% else %}
           <div class="collection-wrapper">
@@ -29,7 +29,7 @@
 
 {% schema %}
 {
-  "name": "Collections",
+  "name": "Collections List",
   "settings": [],
   "blocks": [
     {

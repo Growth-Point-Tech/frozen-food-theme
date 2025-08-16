@@ -31,15 +31,15 @@
         "text_slide_YbUEf4": {
           "type": "text_slide",
           "settings": {
-            "collection_image": "shopify://shop_images/mild-momo-sauce.webp",
-            "collection_title": "Sauce"
+            "collection_image": "shopify://shop_images/1_b556b728-07cc-429d-9487-4a04b4a6f754.png",
+            "collection_title": "Momo Sauce"
           }
         },
         "text_slide_WTtnAc": {
           "type": "text_slide",
           "settings": {
             "collection_image": "shopify://shop_images/non-veg-momos-with-sauce.png",
-            "collection_title": "Bundles"
+            "collection_title": "Family Bundles"
           }
         },
         "text_slide_P3gakC": {
@@ -52,7 +52,7 @@
         "text_slide_p3VNV9": {
           "type": "text_slide",
           "settings": {
-            "collection_image": "shopify://shop_images/beef-momo-front-back.webp",
+            "collection_image": "shopify://shop_images/5_40a6905a-8e06-4b1e-9730-2e5faf927454.png",
             "collection_title": "Frozen Food"
           }
         }
