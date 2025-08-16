@@ -80,7 +80,9 @@ const productVariationInit = (wrapperEle) => {
         btn.dataset.variantId = firstAvailableVariant.id;
         btn.disabled = false;
       }
-      bottomVarintListWrapper.innerHTML = `${selections.join(", ")}`;
+      if (bottomVarintListWrapper) {
+        bottomVarintListWrapper.innerHTML = `${selections.join(", ")}`;
+      }
 
       // Update the price for the auto-selected variant
       updateProductPrice(firstAvailableVariant);
@@ -310,7 +312,9 @@ const productVariationInit = (wrapperEle) => {
 
       const sanitizeSelectionValue = selections.filter((x) => x !== null);
 
-      bottomVarintListWrapper.innerHTML = `${sanitizeSelectionValue.join(", ")}`;
+      if (bottomVarintListWrapper) {
+        bottomVarintListWrapper.innerHTML = `${sanitizeSelectionValue.join(", ")}`;
+      }
     });
   });
 };
