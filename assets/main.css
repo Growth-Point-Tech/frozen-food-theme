@@ -3916,6 +3916,7 @@ ul {
   flex-wrap: wrap;
 }
 .collection-page-section .collection-wrapper .collection-item {
+  display: flex;
   flex-direction: column;
   color: #303336;
   text-decoration: none;
@@ -3923,14 +3924,28 @@ ul {
 .collection-page-section .collection-wrapper .collection-item:hover .collection-title {
   text-decoration: underline;
 }
-.collection-page-section .collection-wrapper .collection-item .collection-image {
-  width: 100%;
+.collection-page-section .collection-wrapper .collection-item:hover .collection-image-wrapper {
+  box-shadow: rgba(48, 51, 54, 0.16) 0px 1px 3px;
+}
+.collection-page-section .collection-wrapper .collection-item:hover .collection-image-wrapper .collection-image {
+  transform: scale(1.1);
+}
+.collection-page-section .collection-wrapper .collection-item .collection-image-wrapper {
   height: 600px;
+  width: 100%;
+  overflow: hidden;
   border-radius: 10px;
+  position: relative;
+}
+.collection-page-section .collection-wrapper .collection-item .collection-image-wrapper .collection-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s linear;
 }
 .collection-page-section .collection-wrapper .collection-item .collection-title {
   font-family: "Brandon Grotesque Medium", "Helvetica Neue";
-  font-size: 22px;
+  font-size: 18px;
   margin-top: 20px;
   text-align: center;
   text-transform: uppercase;

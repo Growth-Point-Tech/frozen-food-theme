@@ -31,14 +31,21 @@
         "text_slide_YbUEf4": {
           "type": "text_slide",
           "settings": {
-            "collection_image": "shopify://shop_images/1_bb51db3f-c91b-406f-b704-9fee010dc059.png",
+            "collection_image": "shopify://shop_images/1_7d31c256-d67b-4785-b9a5-b3fbea748b96.png",
             "collection_title": "Momo Sauce"
+          }
+        },
+        "text_slide_p3VNV9": {
+          "type": "text_slide",
+          "settings": {
+            "collection_image": "shopify://shop_images/2_6e99cf4a-0030-44df-836d-46f84922559c.png",
+            "collection_title": "Frozen Food"
           }
         },
         "text_slide_WTtnAc": {
           "type": "text_slide",
           "settings": {
-            "collection_image": "shopify://shop_images/non-veg-momos-with-sauce.png",
+            "collection_image": "shopify://shop_images/3_882fb5a4-247e-4d7e-8ce0-28fced71052e.png",
             "collection_title": "Family Bundles"
           }
         },
@@ -48,20 +55,13 @@
             "collection_image": "shopify://shop_images/8_1296x_28e75b06-8f35-4027-8a79-47f1a0a25ec3.webp",
             "collection_title": "Digital Product"
           }
-        },
-        "text_slide_p3VNV9": {
-          "type": "text_slide",
-          "settings": {
-            "collection_image": "shopify://shop_images/2_839103ad-daad-45d9-b3b9-54b14a611f8f.png",
-            "collection_title": "Frozen Food"
-          }
         }
       },
       "block_order": [
         "text_slide_YbUEf4",
+        "text_slide_p3VNV9",
         "text_slide_WTtnAc",
-        "text_slide_P3gakC",
-        "text_slide_p3VNV9"
+        "text_slide_P3gakC"
       ],
       "settings": {}
     }

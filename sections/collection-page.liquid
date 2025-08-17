@@ -8,13 +8,15 @@
           <div class="collection-wrapper">
             {% for block in section.blocks %}
               <a href="#" class="collection-item">
-                <img
-                  src="{{ block.settings.collection_image | image_url}}"
-                  width="100"
-                  height="100"
-                  alt="Collection Image"
-                  class="collection-image"
-                >
+                <div class="collection-image-wrapper">
+                  <img
+                    src="{{ block.settings.collection_image | image_url}}"
+                    width="100"
+                    height="100"
+                    alt="Collection Image"
+                    class="collection-image"
+                  >
+                </div>
                 <div class="collection-title">
                   {{ block.settings.collection_title }}
                 </div>

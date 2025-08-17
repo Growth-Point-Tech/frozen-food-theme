@@ -17,6 +17,7 @@
     flex-wrap: wrap;
 
     .collection-item {
+      display: flex;
       flex-direction: column;
       color: $dark-primary-textColor;
       text-decoration: none;
@@ -24,17 +25,33 @@
         .collection-title {
           text-decoration: underline;
         }
+        .collection-image-wrapper {
+          box-shadow: $box-shadow;
+
+          .collection-image {
+            transform: scale(1.1);
+          }
+        }
       }
 
-      .collection-image {
-        width: 100%;
+      .collection-image-wrapper {
         height: 600px;
+        width: 100%;
+        overflow: hidden;
         border-radius: 10px;
+        position: relative;
+
+        .collection-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.4s linear;
+        }
       }
 
       .collection-title {
         font-family: $font-family-brandon-med;
-        font-size: 22px;
+        font-size: 18px;
         margin-top: 20px;
         text-align: center;
         text-transform: uppercase;
