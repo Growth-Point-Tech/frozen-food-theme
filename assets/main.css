@@ -1084,7 +1084,7 @@ ul {
   cursor: pointer;
   z-index: 1;
   width: 100%;
-  height: 350px;
+  height: 420px;
   display: block;
 }
 .featured-product-inner-wrapper .featured-product-image-wrapper .product-image {
@@ -1657,13 +1657,17 @@ ul {
   display: flex;
   gap: 15px;
   z-index: 10;
+  flex-wrap: wrap;
 }
 .product-tag-wrapper .tag-name {
   background-color: #c02329;
   padding: 6px 8px;
   color: #fff;
-  font-size: 0.875rem;
+  font-family: "Brandon Grotesque", "Helvetica Neue";
+  font-size: 12px;
   border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .banner-section {
