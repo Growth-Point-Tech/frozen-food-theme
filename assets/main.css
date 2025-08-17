@@ -877,6 +877,7 @@ ul {
 .add-to-cart-modal-wrapper .modal-content .add-to-cart-product-wrapper .add-to-cart-product-information .add-to-cart-cta-wrapper .add-to-cart-btn-group .btn {
   flex-grow: 1;
   max-width: 165px;
+  text-transform: uppercase;
 }
 @media (max-width: 1023px) {
   .add-to-cart-modal-wrapper .modal-content .add-to-cart-product-wrapper .add-to-cart-product-information .add-to-cart-cta-wrapper .add-to-cart-btn-group .btn {
@@ -2855,6 +2856,8 @@ ul {
 }
 .product-details-section .product-details-wrapper .product-content-wrapper .product-inner-content-wrapper .product-details-cta-wrapper .product-details-btn-group .btn {
   flex: 0 0 100%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 .product-details-section .product-details-wrapper .product-content-wrapper .product-inner-content-wrapper .product-details-cta-wrapper .product-details-btn-group .btn span {
   display: flex;
@@ -2999,6 +3002,10 @@ ul {
 }
 .product-details-section .product-sticky-bottom .product-sticky-bottom-wrapper .bottom-product-details-btn-group {
   display: flex;
+}
+.product-details-section .product-sticky-bottom .product-sticky-bottom-wrapper .bottom-product-details-btn-group .btn {
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 .product-details-section .product-sticky-bottom .product-sticky-bottom-wrapper .bottom-product-details-btn-group .btn span {
   display: flex;
