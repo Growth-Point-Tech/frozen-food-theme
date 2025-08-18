@@ -22,7 +22,7 @@
         "button-text": "",
         "button-link": "",
         "banner-overlay": true,
-        "overlay-opacity": 0.4
+        "overlay-opacity": 0.6
       }
     },
     "main": {
@@ -44,7 +44,7 @@
         "button-text": "Shop Now",
         "button-link": "/pages/gift-card",
         "banner-overlay": true,
-        "overlay-opacity": 0.3
+        "overlay-opacity": 0.6
       }
     }
   },
