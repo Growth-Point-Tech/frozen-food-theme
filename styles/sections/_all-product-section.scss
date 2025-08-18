@@ -1,0 +1,127 @@
+@use "abstracts/_breakpoints" as *;
+@use "abstracts/_variables" as *;
+
+.all-product-wrapper {
+  display: flex;
+  margin: 50px 0;
+  gap: 20px;
+  background-color: rgb(242, 242, 242);
+  @include responsive(tablet) {
+    flex-direction: column;
+  }
+  .facet-wrappers {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    position: sticky;
+    top: 80px; /* required for sticky */
+    flex: 0 0 20%; /* give it width if sidebar */
+    align-self: flex-start; /* prevents flex stretching */
+    gap: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    @include responsive(tablet) {
+      position: unset;
+      flex: 0 0 100%;
+      width: 100%;
+      margin-top: 0;
+    }
+
+    &.active {
+      .facet-inner-wrapper {
+        display: block !important;
+      }
+    }
+
+    .facet-title-wrapper {
+      font-size: 21px;
+      font-family: $font-family-brandon-med;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+
+      &.active {
+        border-bottom: 1px solid $dark-bgColor;
+        .facet-icon {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .facet-inner-wrapper {
+      display: none;
+    }
+
+    .facet {
+      width: 100%;
+      padding: 20px;
+      border-bottom: 1px solid $dark-bgColor;
+      &:last-child {
+        border-bottom: none;
+      }
+      &.active {
+        .facet-list-wrapper {
+          display: flex !important;
+        }
+
+        .inactive-icon {
+          display: none;
+        }
+        .active-icon {
+          display: block !important;
+        }
+      }
+
+      .facet-label-wrapper {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        height: 100%;
+        align-items: center;
+
+        .facet-label {
+          font-size: 21px;
+          font-family: $font-family-brandon;
+        }
+        .active-icon {
+          display: none;
+        }
+      }
+
+      .facet-list-wrapper {
+        display: flex;
+        flex-direction: column;
+        display: none;
+        margin: 15px 0 0 0;
+        text-transform: capitalize;
+        gap: 10px;
+      }
+    }
+  }
+
+  .all-products-list-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+
+    .featured-product-inner-wrapper {
+      height: unset;
+      flex: 1 0 calc(25% - 20px); /* 3 per row with gap */
+      box-sizing: border-box;
+      max-width: 343px;
+
+      @include responsive(tablet) {
+        position: unset;
+        flex: 0 0 100%;
+        width: 100%;
+        margin-top: 0;
+        max-width: 100%;
+      }
+    }
+  }
+}
