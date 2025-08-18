@@ -16,6 +16,10 @@
     gap: 30px 20px;
     flex-wrap: wrap;
 
+    @include responsive(tablet) {
+      grid-template-columns: 1fr;
+    }
+
     .collection-item {
       display: flex;
       flex-direction: column;
