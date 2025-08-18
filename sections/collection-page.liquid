@@ -3,11 +3,11 @@
     <div class="row">
       <div class="col">
         {% if section.blocks.size == 0 %}
-          <div class="no-collection-found-wrapper">No COllection Found</div>
+          <div class="no-collection-found-wrapper">No Collection Found</div>
         {% else %}
           <div class="collection-wrapper">
             {% for block in section.blocks %}
-              <a href="#" class="collection-item">
+              <a href="/pages/all-products" class="collection-item">
                 <div class="collection-image-wrapper">
                   <img
                     src="{{ block.settings.collection_image | image_url}}"

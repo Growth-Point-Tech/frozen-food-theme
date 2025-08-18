@@ -10,7 +10,7 @@
             </div>
             <div class="facet-inner-wrapper">
               {% for filter in section.settings.collection.filters %}
-                <div class="facet" id="facet">
+                <div class="facet {% if forloop.first %}active{% endif %}" id="facet">
                   <div class="facet-label-wrapper facet-identifier">
                     <h3 class="facet-label">{{ filter.label }}</h3>
                     <img src="{{ 'plus.png' | asset_url }}" height="18" width="18" class="inactive-icon">
