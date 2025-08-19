@@ -1,0 +1,66 @@
+@use "abstracts/_breakpoints" as *;
+@use "abstracts/_variables" as *;
+.collection-page-section {
+  overflow: hidden;
+  .no-collection-found-wrapper {
+    margin: 50px auto;
+    font-size: 30px;
+    font-family: $font-family-brandon;
+    text-align: center;
+  }
+
+  .collection-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 100px 0;
+    gap: 30px 20px;
+    flex-wrap: wrap;
+
+    @include responsive(tablet) {
+      grid-template-columns: 1fr;
+    }
+
+    .collection-item {
+      display: flex;
+      flex-direction: column;
+      color: $dark-primary-textColor;
+      text-decoration: none;
+      &:hover {
+        .collection-title {
+          text-decoration: underline;
+        }
+        .collection-image-wrapper {
+          box-shadow: $box-shadow;
+
+          .collection-image {
+            transform: scale(1.1);
+          }
+        }
+      }
+
+      .collection-image-wrapper {
+        height: 600px;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 10px;
+        position: relative;
+
+        .collection-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.4s linear;
+        }
+      }
+
+      .collection-title {
+        font-family: $font-family-brandon-med;
+        font-size: 18px;
+        margin-top: 20px;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+    }
+  }
+}

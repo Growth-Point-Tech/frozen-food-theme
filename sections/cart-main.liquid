@@ -79,7 +79,7 @@
                     </div>
                   </div>
                   <div class="cart-item-meta">
-                    <button type="button" class="cart-remove-btn" title="Remove">
+                    <button type="button" class="cart-remove-btn" title="Remove" id="cart-item-remove-btn">
                       <img src="{{ 'cancel.png' | asset_url }}" alt="Remove" width="14" height="14">
                     </button>
                     <div class="cart-item-line-total" role="cell">{{ item.line_price | money }}</div>
@@ -91,17 +91,18 @@
             <div class="cart-summary-wrapper">
               <div class="cart-summary">
                 <p class="cart-subtotal">
+                  <span>TOTAL ITEMS</span> <span>{{ cart.item_count }}</span>
+                </p>
+                <p class="cart-subtotal">
                   <strong>SUBTOTAL</strong> <span id="cart-subtotal">{{ cart.total_price | money }}</span>
                 </p>
-                <p class="cart-taxes">Taxes, shipping and discounts codes calculated at checkout</p>
               </div>
 
-              <a href="/checkout" class="cart-checkout-btn" id="cart-checkout-btn">Proceed to checkout</a>
+              <a href="/checkout" class="cart-checkout-btn btn  btn-contained btn-red" id="cart-checkout-btn">
+                Proceed to checkout</a
+              >
+              <p class="cart-taxes">Taxes, shipping and discounts codes calculated at checkout</p>
             </div>
-            <script>
-              window.Shopify = window.Shopify || {};
-              Shopify.money_format = '{{ shop.money_format | escape }}';
-            </script>
             <script src="{{ 'cart-page.js' | asset_url }}" defer></script>
           {% endif %}
         </div>

@@ -448,7 +448,6 @@ ul {
   padding-bottom: 20px;
   transition: all 0.3s ease-in;
   color: #303336;
-  z-index: 30;
   position: relative;
 }
 .footer-wrapper.dark-bg {
@@ -878,6 +877,7 @@ ul {
 .add-to-cart-modal-wrapper .modal-content .add-to-cart-product-wrapper .add-to-cart-product-information .add-to-cart-cta-wrapper .add-to-cart-btn-group .btn {
   flex-grow: 1;
   max-width: 165px;
+  text-transform: uppercase;
 }
 @media (max-width: 1023px) {
   .add-to-cart-modal-wrapper .modal-content .add-to-cart-product-wrapper .add-to-cart-product-information .add-to-cart-cta-wrapper .add-to-cart-btn-group .btn {
@@ -1085,7 +1085,7 @@ ul {
   cursor: pointer;
   z-index: 1;
   width: 100%;
-  height: 350px;
+  height: 420px;
   display: block;
 }
 .featured-product-inner-wrapper .featured-product-image-wrapper .product-image {
@@ -1658,13 +1658,17 @@ ul {
   display: flex;
   gap: 15px;
   z-index: 10;
+  flex-wrap: wrap;
 }
 .product-tag-wrapper .tag-name {
   background-color: #c02329;
   padding: 6px 8px;
   color: #fff;
-  font-size: 0.875rem;
+  font-family: "Brandon Grotesque", "Helvetica Neue";
+  font-size: 12px;
   border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .banner-section {
@@ -2852,6 +2856,8 @@ ul {
 }
 .product-details-section .product-details-wrapper .product-content-wrapper .product-inner-content-wrapper .product-details-cta-wrapper .product-details-btn-group .btn {
   flex: 0 0 100%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 .product-details-section .product-details-wrapper .product-content-wrapper .product-inner-content-wrapper .product-details-cta-wrapper .product-details-btn-group .btn span {
   display: flex;
@@ -2996,6 +3002,10 @@ ul {
 }
 .product-details-section .product-sticky-bottom .product-sticky-bottom-wrapper .bottom-product-details-btn-group {
   display: flex;
+}
+.product-details-section .product-sticky-bottom .product-sticky-bottom-wrapper .bottom-product-details-btn-group .btn {
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 .product-details-section .product-sticky-bottom .product-sticky-bottom-wrapper .bottom-product-details-btn-group .btn span {
   display: flex;
@@ -3666,6 +3676,7 @@ ul {
 @media (max-width: 1023px) {
   .cart-items .cart-product-info {
     flex-direction: column;
+    align-items: flex-start;
   }
 }
 .cart-items .cart-product-info .cart-page-item-image {
@@ -3696,7 +3707,6 @@ ul {
   transition: color 0.2s;
 }
 .cart-items .cart-page-title-wrapper .cart-title-row .cart-item-title:hover {
-  color: #c02329;
   text-decoration: underline;
 }
 .cart-items .cart-page-title-wrapper .cart-title-row .cart-item-variation-list .cart-item-variant {
@@ -3710,6 +3720,13 @@ ul {
 .cart-items .cart-page-title-wrapper .cart-page-qty-wrapper {
   width: 100px;
   margin-top: 20px;
+}
+.cart-items .cart-page-title-wrapper .cart-page-qty-wrapper.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.cart-items .cart-page-title-wrapper .cart-page-qty-wrapper.disabled .add-to-cart-qty-wrapper {
+  pointer-events: none;
 }
 .cart-items .cart-page-title-wrapper .cart-page-qty-wrapper .add-to-cart-qty-wrapper {
   background-color: transparent;
@@ -3736,6 +3753,10 @@ ul {
   align-items: center;
   justify-content: center;
   transition: opacity 0.2s;
+}
+.cart-items .cart-remove-btn.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
 }
 .cart-items .cart-remove-btn img {
   width: 14px;
@@ -3887,4 +3908,177 @@ ul {
   top: auto;
   left: auto;
   transform: none;
+}
+
+.collection-page-section {
+  overflow: hidden;
+}
+.collection-page-section .no-collection-found-wrapper {
+  margin: 50px auto;
+  font-size: 30px;
+  font-family: "Brandon Grotesque", "Helvetica Neue";
+  text-align: center;
+}
+.collection-page-section .collection-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 100px 0;
+  gap: 30px 20px;
+  flex-wrap: wrap;
+}
+@media (max-width: 1023px) {
+  .collection-page-section .collection-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+.collection-page-section .collection-wrapper .collection-item {
+  display: flex;
+  flex-direction: column;
+  color: #303336;
+  text-decoration: none;
+}
+.collection-page-section .collection-wrapper .collection-item:hover .collection-title {
+  text-decoration: underline;
+}
+.collection-page-section .collection-wrapper .collection-item:hover .collection-image-wrapper {
+  box-shadow: rgba(48, 51, 54, 0.16) 0px 1px 3px;
+}
+.collection-page-section .collection-wrapper .collection-item:hover .collection-image-wrapper .collection-image {
+  transform: scale(1.1);
+}
+.collection-page-section .collection-wrapper .collection-item .collection-image-wrapper {
+  height: 600px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  position: relative;
+}
+.collection-page-section .collection-wrapper .collection-item .collection-image-wrapper .collection-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s linear;
+}
+.collection-page-section .collection-wrapper .collection-item .collection-title {
+  font-family: "Brandon Grotesque Medium", "Helvetica Neue";
+  font-size: 18px;
+  margin-top: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.all-product-wrapper {
+  display: flex;
+  margin: 50px 0;
+  gap: 20px;
+  background-color: rgb(242, 242, 242);
+}
+@media (max-width: 1023px) {
+  .all-product-wrapper {
+    flex-direction: column;
+  }
+}
+.all-product-wrapper .facet-wrappers {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  position: sticky;
+  top: 80px; /* required for sticky */
+  flex: 0 0 20%; /* give it width if sidebar */
+  align-self: flex-start; /* prevents flex stretching */
+  gap: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+@media (max-width: 1023px) {
+  .all-product-wrapper .facet-wrappers {
+    position: unset;
+    flex: 0 0 100%;
+    width: 100%;
+    margin-top: 0;
+  }
+}
+.all-product-wrapper .facet-wrappers.active .facet-inner-wrapper {
+  display: block !important;
+}
+.all-product-wrapper .facet-wrappers .facet-title-wrapper {
+  font-size: 21px;
+  font-family: "Brandon Grotesque Medium", "Helvetica Neue";
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.all-product-wrapper .facet-wrappers .facet-title-wrapper.active {
+  border-bottom: 1px solid #303336;
+}
+.all-product-wrapper .facet-wrappers .facet-title-wrapper.active .facet-icon {
+  transform: rotate(180deg);
+}
+.all-product-wrapper .facet-wrappers .facet-inner-wrapper {
+  display: none;
+}
+.all-product-wrapper .facet-wrappers .facet {
+  width: 100%;
+  padding: 20px;
+  border-bottom: 1px solid #303336;
+}
+.all-product-wrapper .facet-wrappers .facet:last-child {
+  border-bottom: none;
+}
+.all-product-wrapper .facet-wrappers .facet.active .facet-list-wrapper {
+  display: flex !important;
+}
+.all-product-wrapper .facet-wrappers .facet.active .inactive-icon {
+  display: none;
+}
+.all-product-wrapper .facet-wrappers .facet.active .active-icon {
+  display: block !important;
+}
+.all-product-wrapper .facet-wrappers .facet .facet-label-wrapper {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  height: 100%;
+  align-items: center;
+}
+.all-product-wrapper .facet-wrappers .facet .facet-label-wrapper .facet-label {
+  font-size: 21px;
+  font-family: "Brandon Grotesque", "Helvetica Neue";
+}
+.all-product-wrapper .facet-wrappers .facet .facet-label-wrapper .active-icon {
+  display: none;
+}
+.all-product-wrapper .facet-wrappers .facet .facet-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  display: none;
+  margin: 15px 0 0 0;
+  text-transform: capitalize;
+  gap: 10px;
+}
+.all-product-wrapper .all-products-list-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.all-product-wrapper .all-products-list-wrapper .featured-product-inner-wrapper {
+  height: unset;
+  flex: 1 0 calc(25% - 20px); /* 3 per row with gap */
+  box-sizing: border-box;
+  max-width: 343px;
+}
+@media (max-width: 1023px) {
+  .all-product-wrapper .all-products-list-wrapper .featured-product-inner-wrapper {
+    position: unset;
+    flex: 0 0 100%;
+    width: 100%;
+    margin-top: 0;
+    max-width: 100%;
+  }
 }

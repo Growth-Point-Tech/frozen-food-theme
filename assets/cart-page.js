@@ -1,67 +1,49 @@
-document.addEventListener("DOMContentLoaded", function () {
-  if (!document.querySelector(".cart-main-wrapper")) return;
+const disableButtons = (loader) => {
+  const mainWrapper = document.querySelector(".cart-main-wrapper");
+  if (!mainWrapper) return;
+  const proceedCheckoutBtn = mainWrapper.querySelector("#cart-checkout-btn");
+  proceedCheckoutBtn.classList.toggle("disabled", loader);
 
-  // Add Shopify.formatMoney if missing
-  if (typeof Shopify === "undefined") {
-    window.Shopify = {};
+  const itemRemoveBtn = mainWrapper.querySelectorAll("#cart-item-remove-btn");
+  if (itemRemoveBtn.length) {
+    itemRemoveBtn.forEach((ele) => {
+      ele.classList.toggle("disabled", loader);
+    });
   }
-  if (typeof Shopify.formatMoney !== "function") {
-    Shopify.formatMoney = function (cents, format) {
-      if (typeof cents == "string") {
-        cents = cents.replace(".", "");
-      }
-      var value = "";
-      var placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
-      function formatWithDelimiters(number, precision, thousands, decimal) {
-        thousands = thousands || ",";
-        decimal = decimal || ".";
-        if (isNaN(number) || number == null) {
-          return 0;
-        }
-        number = (number / 100.0).toFixed(precision);
-        var parts = number.split(".");
-        var dollars = parts[0].replace(
-          /(\d)(?=(\d{3})+(?!\d))/g,
-          "$1" + thousands,
-        );
-        var cents = parts[1] ? decimal + parts[1] : "";
-        return dollars + cents;
-      }
-      switch (format || this.money_format) {
-        case "${{amount}}":
-          value = formatWithDelimiters(cents, 2);
-          break;
-        case "${{amount_no_decimals}}":
-          value = formatWithDelimiters(cents, 0);
-          break;
-        case "${{amount_with_comma_separator}}":
-          value = formatWithDelimiters(cents, 2, ".", ",");
-          break;
-        default:
-          value = formatWithDelimiters(cents, 2);
-          break;
-      }
-      return format.replace(placeholderRegex, value);
-    };
+  const qtyHandler = mainWrapper.querySelectorAll(".cart-page-qty-wrapper");
+  if (qtyHandler.length) {
+    qtyHandler.forEach((ele) => {
+      ele.classList.toggle("disabled", loader);
+    });
   }
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+  const cartPageWrapper = document.querySelector(".cart-main-wrapper");
+
+  if (!cartPageWrapper) return;
 
   // Debounce map per item key
   const quantityUpdateTimers = {};
 
   // Utility to show/hide item loader by toggling 'hidden' class
   function setItemLoading(itemKey, isLoading) {
-    const desktopLoader = document.getElementById(`item-loader-${itemKey.replace(/:/g, '-')}`);
-    const mobileLoader = document.getElementById(`item-loader-mobile-${itemKey.replace(/:/g, '-')}`);
+    const desktopLoader = document.getElementById(
+      `item-loader-${itemKey.replace(/:/g, "-")}`,
+    );
+    const mobileLoader = document.getElementById(
+      `item-loader-mobile-${itemKey.replace(/:/g, "-")}`,
+    );
     if (desktopLoader) {
-      desktopLoader.classList.toggle('hidden', !isLoading);
+      desktopLoader.classList.toggle("hidden", !isLoading);
     }
     if (mobileLoader) {
-      mobileLoader.classList.toggle('hidden', !isLoading);
+      mobileLoader.classList.toggle("hidden", !isLoading);
     }
   }
 
-  function fetchAndRenderCartSection() {
-    return fetch(
+  async function fetchAndRenderCartSection() {
+    return await fetch(
       window.location.pathname + "?sections=cart-main&v=" + Date.now(),
     )
       .then((res) => res.json())
@@ -71,29 +53,25 @@ document.addEventListener("DOMContentLoaded", function () {
         const newSection = tempDiv.querySelector(".cart-main-wrapper");
         document.querySelector(".cart-main-wrapper").replaceWith(newSection);
         attachCartPageListeners();
-        initializeAgreementCheckbox();
         window.updateCartCount();
+      })
+      .finally(() => {
+        disableButtons(false);
       });
   }
 
   function updateCartItem(key, newQty) {
     setItemLoading(key, true);
+    disableButtons(true);
     fetch("/cart/change.js", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: key, quantity: newQty }),
     })
-      .then((res) => {
-        if (!res.ok) {
-          return res.json().then((data) => {
-            throw new Error(data.description || "Cart update failed");
-          });
-        }
-        return res.json();
-      })
-      .then(() => fetchAndRenderCartSection())
+      .then(async (res) => await window.handleFetchResponse(res))
+      .then(async () => await fetchAndRenderCartSection())
       .catch((err) => {
-        alert(err.message || "Error updating cart. Please try again.");
+        window.showToast(err.message || "error");
         fetchAndRenderCartSection(); // Try to re-sync the DOM anyway
       })
       .finally(() => setItemLoading(key, false));
@@ -141,6 +119,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Quantity changes are handled by the +/- buttons
         if (removeBtn) {
           removeBtn.addEventListener("click", function () {
+            if (removeBtn.classList.contains("disabled")) {
+              return;
+            }
             updateCartItem(key, 0);
           });
         }
@@ -149,41 +130,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initial attach
   attachCartPageListeners();
-
-  // Agreement checkbox functionality
-  function initializeAgreementCheckbox() {
-    const agreementCheckbox = document.getElementById('cart-agreement-checkbox');
-    const checkoutBtn = document.getElementById('cart-checkout-btn');
-    
-    if (!agreementCheckbox || !checkoutBtn) return;
-    
-    function updateCheckoutButtonState() {
-      if (agreementCheckbox.checked) {
-        checkoutBtn.removeAttribute('disabled');
-        checkoutBtn.classList.remove('disabled');
-      } else {
-        checkoutBtn.setAttribute('disabled', 'disabled');
-        checkoutBtn.classList.add('disabled');
-      }
-    }
-    
-    // Set initial state
-    updateCheckoutButtonState();
-    
-    // Add event listener
-    agreementCheckbox.addEventListener('change', updateCheckoutButtonState);
-    
-    // Prevent checkout if checkbox is unchecked
-    checkoutBtn.addEventListener('click', function(e) {
-      if (!agreementCheckbox.checked) {
-        e.preventDefault();
-        e.stopPropagation();
-        alert('Please agree to the Terms and Conditions and Privacy Policy before proceeding to checkout.');
-        return false;
-      }
-    });
-  }
-
-  // Initialize agreement checkbox
-  initializeAgreementCheckbox();
 });

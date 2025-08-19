@@ -93,32 +93,31 @@
               {% endcomment %}
               <!-- Cart -->
               {% if template == 'cart' %}
-              <div class="add-to-cart-icon-group disabled-cart-icon">
-                <img
-                  src="{{ 'shopping-bag.png' | asset_url }}"
-                  height="22"
-                  width="22"
-                  id="cart-icon"
-                  aria-label="Cart (disabled)"
-                  class="add-to-cart-icon"
-                  style="opacity:0.4; pointer-events:none; cursor:not-allowed;"
-                >
-                <span class="cart-count-number hidden" id="cart-item-count"></span>
-              </div>
+                <a href="/checkout" class="add-to-cart-icon-group">
+                  <img
+                    src="{{ 'check.png' | asset_url }}"
+                    height="22"
+                    width="22"
+                    aria-label="checkout"
+                  >
+                  <span class="cart-count-number {% if cart.item_count == 0 %}hidden{% endif %}" id="cart-item-count">
+                    {{ cart.item_count }}
+                  </span>
+                </a>
               {% else %}
-              <div class="add-to-cart-icon-group">
-                <img
-                  src="{{ 'shopping-bag.png' | asset_url }}"
-                  height="22"
-                  width="22"
-                  id="cart-icon"
-                  aria-label="Open Cart"
-                  class="add-to-cart-icon"
-                >
-                <span class="cart-count-number {% if cart.item_count == 0 %}hidden{% endif %}" id="cart-item-count">
-                  {{ cart.item_count }}
-                </span>
-              </div>
+                <div class="add-to-cart-icon-group">
+                  <img
+                    src="{{ 'shopping-bag.png' | asset_url }}"
+                    height="22"
+                    width="22"
+                    id="cart-icon"
+                    aria-label="Open Cart"
+                    class="add-to-cart-icon"
+                  >
+                  <span class="cart-count-number {% if cart.item_count == 0 %}hidden{% endif %}" id="cart-item-count">
+                    {{ cart.item_count }}
+                  </span>
+                </div>
               {% endif %}
             </div>
           </div>

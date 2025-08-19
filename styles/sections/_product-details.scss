@@ -240,6 +240,8 @@
 
             .btn {
               flex: 0 0 100%;
+              text-transform: uppercase;
+              letter-spacing: 1px;
 
               span {
                 display: flex;
@@ -408,6 +410,8 @@
       .bottom-product-details-btn-group {
         display: flex;
         .btn {
+          text-transform: uppercase;
+          letter-spacing: 1px;
           span {
             display: flex;
             gap: 10px;

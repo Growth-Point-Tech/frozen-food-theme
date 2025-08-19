@@ -1,0 +1,103 @@
+<div class="all-product-section" id="all-product">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="all-product-wrapper">
+          <div class="facet-wrappers active" id="facet-wrapper">
+            <div class="facet-title-wrapper active" id="filter-title">
+              Filters
+              <img src="{{ 'up-arrow.png' | asset_url }}" height="16" width="16" class="facet-icon">
+            </div>
+            <div class="facet-inner-wrapper">
+              {% for filter in section.settings.collection.filters %}
+                <div class="facet {% if forloop.first %}active{% endif %}" id="facet">
+                  <div class="facet-label-wrapper facet-identifier">
+                    <h3 class="facet-label">{{ filter.label }}</h3>
+                    <img src="{{ 'plus.png' | asset_url }}" height="18" width="18" class="inactive-icon">
+                    <img src="{{ 'minus.png' | asset_url }}" height="16" width="16" class="active-icon">
+                  </div>
+
+                  {% case filter.type %}
+                    {% when 'list' %}
+                      <div class="facet-list-wrapper">
+                        {% for value in filter.values %}
+                          <div class="facet-list">
+                            <label>
+                              <input
+                                type="checkbox"
+                                class="facet-list-value"
+                                name="{{ filter.param_name }}"
+                                value="{{ value.value }}"
+                                {% if value.active %}
+                                  checked
+                                {% endif %}
+                                {% if value.count == 0 and value.active == false %}
+                                  disabled
+                                {% endif %}
+                              >
+                              {{ value.label }} ({{ value.count }})
+                            </label>
+                          </div>
+                        {% endfor %}
+                      </div>
+
+                    {% when 'price_range' %}
+                      <!-- hidden inputs for form submission -->
+                      <div class="facet-list-wrapper">
+                        <div id="price-slider"></div>
+
+                        <input
+                          type="hidden"
+                          name="{{ filter.min_value.param_name }}"
+                          id="price-min-value"
+                          value="{{ filter.min_value.value | default: 0 }}"
+                        >
+                        <input
+                          type="hidden"
+                          name="{{ filter.max_value.param_name }}"
+                          id="price-max-value"
+                          value="{{ filter.max_value.value | default: 1000 }}"
+                        >
+
+                        <div>
+                          Price: $<span id="price-min-display">{{ filter.min_value.value | default: 0 }}</span> - $<span id="price-max-display">
+                            {{- filter.max_value.value | default: 1000 -}}
+                          </span>
+                        </div>
+                      </div>
+                  {% endcase %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="all-products-list-wrapper">
+            {% for product in section.settings.collection.products %}
+              {% render 'product-card', product: product %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.getElementById('body').style.backgroundColor = 'rgb(242, 242, 242)';
+</script>
+
+{% schema %}
+{
+  "name": "All Products",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select a collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "All Products"
+    }
+  ]
+}
+{% endschema %}

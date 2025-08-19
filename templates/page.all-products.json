@@ -22,21 +22,13 @@
         "button-text": "",
         "button-link": "",
         "banner-overlay": true,
-        "overlay-opacity": 0.4
+        "overlay-opacity": 0.6
       }
     },
     "main": {
       "type": "all-products-main",
-      "settings": {}
-    },
-    "product_list_etWtbn": {
-      "type": "product-list",
-      "name": "Product List",
       "settings": {
-        "dark_mode": false,
-        "product_slider": false,
-        "collection": "all-products",
-        "section-title": ""
+        "collection": "all-products"
       }
     },
     "banner_ixNB6L": {
@@ -52,14 +44,13 @@
         "button-text": "Shop Now",
         "button-link": "/pages/gift-card",
         "banner-overlay": true,
-        "overlay-opacity": 0.3
+        "overlay-opacity": 0.6
       }
     }
   },
   "order": [
     "banner_NTGAzF",
     "main",
-    "product_list_etWtbn",
     "banner_ixNB6L"
   ]
 }

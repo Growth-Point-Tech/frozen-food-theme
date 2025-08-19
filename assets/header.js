@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const subMenuWrapper = document.getElementById("sub-navigation-wrapper");
   const header = document.getElementById("header");
   const promoBanner = document.getElementById("promotional-banner");
   const extraHeight = document.getElementById("extra-header-height");
