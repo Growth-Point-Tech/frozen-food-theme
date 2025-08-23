@@ -1,4 +1,12 @@
-<div class="featured-product-inner-wrapper swiper-slide">
+<div
+  class="featured-product-inner-wrapper swiper-slide product-card"
+  data-price="{{ product.price | divided_by: 100.0 }}"
+  data-tags="{{ product.tags | join: ',' }}"
+  data-vendor="{{ product.vendor }}"
+  data-product-type="{{ product.type }}"
+  data-title="{{ product.title }}"
+  data-available="{{ product.selected_or_first_available_variant.available | downcase }}"
+>
   <a
     href="{{ product.url }}"
     class="featured-product-image-wrapper {% if product.images.size > 1 %}has-hover{% endif %}"
