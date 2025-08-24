@@ -152,6 +152,21 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update the data-max attribute
     qtyWrapper.dataset.max = maxQty;
 
+    const availabilityStatus = productDetails.querySelector(
+      ".availability-status",
+    );
+    if (variant && availabilityStatus) {
+      if (variant.available) {
+        availabilityStatus.textContent = "In Stock";
+        availabilityStatus.classList.remove("out-of-stock");
+        availabilityStatus.classList.add("in-stock");
+      } else {
+        availabilityStatus.textContent = "Out of Stock";
+        availabilityStatus.classList.remove("in-stock");
+        availabilityStatus.classList.add("out-of-stock");
+      }
+    }
+
     // Update the quantity display if current quantity exceeds new max
     const qtyDisplay = qtyWrapper.querySelector(".quantity-input");
     const currentQty = parseInt(qtyDisplay.textContent) || 1;
@@ -238,19 +253,6 @@ document.addEventListener("DOMContentLoaded", () => {
       behavior: "smooth",
     });
   });
-
-  // productDetails
-  //   .querySelector("#bottom-product-cart")
-  //   .addEventListener("click", () => {
-  //     const section = productDetails.querySelector(".product-sticky-bottom");
-  //     const elementPosition = section.getBoundingClientRect().top;
-
-  //     window.scrollTo({
-  //       // top: offsetPosition,
-  //       top: elementPosition,
-  //       behavior: "smooth",
-  //     });
-  //   });
 
   const productStickyBottomInit = () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;

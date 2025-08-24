@@ -4020,6 +4020,24 @@ ul {
 .all-product-wrapper .facet-wrappers .facet-inner-wrapper {
   display: none;
 }
+.all-product-wrapper .facet-wrappers .facet-inner-wrapper .clear-filters-btn {
+  background-color: #c02329;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Brandon Grotesque", "Helvetica Neue";
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 20px;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+.all-product-wrapper .facet-wrappers .facet-inner-wrapper .clear-filters-btn:hover {
+  background-color: #720519;
+}
 .all-product-wrapper .facet-wrappers .facet {
   width: 100%;
   padding: 20px;
@@ -4052,12 +4070,29 @@ ul {
   display: none;
 }
 .all-product-wrapper .facet-wrappers .facet .facet-list-wrapper {
-  display: flex;
-  flex-direction: column;
   display: none;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px 0;
   margin: 15px 0 0 0;
   text-transform: capitalize;
-  gap: 10px;
+}
+.all-product-wrapper .facet-wrappers .facet .facet-list-wrapper .facet-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.all-product-wrapper .facet-wrappers .facet .facet-list-wrapper .facet-list label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: "Brandon Grotesque", "Helvetica Neue";
+}
+.all-product-wrapper .facet-wrappers .facet .facet-list-wrapper .facet-list label input[type=checkbox] {
+  accent-color: #c02329;
+  cursor: pointer;
 }
 .all-product-wrapper .all-products-list-wrapper {
   display: flex;
@@ -4081,4 +4116,16 @@ ul {
     margin-top: 0;
     max-width: 100%;
   }
+}
+.all-product-wrapper .all-products-list-wrapper .no-products-message {
+  text-align: center;
+  padding: 40px 20px;
+  color: #303336;
+  font-family: "Brandon Grotesque", "Helvetica Neue";
+  width: 100%;
+}
+.all-product-wrapper .all-products-list-wrapper .no-products-message p {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 500;
 }
