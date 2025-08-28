@@ -51,6 +51,16 @@
 
     .facet-inner-wrapper {
       display: none;
+
+      .clear-filters-btn {
+        padding: 10px;
+        margin: 20px auto;
+        box-sizing: content-box;
+      }
+
+      .noUi-connect {
+        background-color: $dark-bgColor !important;
+      }
     }
 
     .facet {

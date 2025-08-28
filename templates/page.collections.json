@@ -32,7 +32,7 @@
           "type": "text_slide",
           "settings": {
             "collection_image": "shopify://shop_images/1_7d31c256-d67b-4785-b9a5-b3fbea748b96.png",
-            "collection_title": "Momo Sauce"
+            "collection_title": "Sauce"
           }
         },
         "text_slide_p3VNV9": {
@@ -46,14 +46,14 @@
           "type": "text_slide",
           "settings": {
             "collection_image": "shopify://shop_images/3_882fb5a4-247e-4d7e-8ce0-28fced71052e.png",
-            "collection_title": "Family Bundles"
+            "collection_title": "Bundles"
           }
         },
         "text_slide_P3gakC": {
           "type": "text_slide",
           "settings": {
             "collection_image": "shopify://shop_images/8_1296x_28e75b06-8f35-4027-8a79-47f1a0a25ec3.webp",
-            "collection_title": "Digital Product"
+            "collection_title": "Digital Products"
           }
         }
       },
@@ -66,8 +66,5 @@
       "settings": {}
     }
   },
-  "order": [
-    "banner_8NrqTd",
-    "main"
-  ]
+  "order": ["banner_8NrqTd", "main"]
 }

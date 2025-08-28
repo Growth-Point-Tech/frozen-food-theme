@@ -4008,6 +4008,14 @@ ul {
 .all-product-wrapper .facet-wrappers .facet-inner-wrapper {
   display: none;
 }
+.all-product-wrapper .facet-wrappers .facet-inner-wrapper .clear-filters-btn {
+  padding: 10px;
+  margin: 20px auto;
+  box-sizing: content-box;
+}
+.all-product-wrapper .facet-wrappers .facet-inner-wrapper .noUi-connect {
+  background-color: #303336 !important;
+}
 .all-product-wrapper .facet-wrappers .facet {
   width: 100%;
   padding: 20px;

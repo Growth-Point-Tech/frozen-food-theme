@@ -39,12 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const urlParams = getUrlParams();
 
     // Debug: Log URL parameters
-    console.log("URL Parameters:", urlParams);
 
     // Handle the 'q' parameter for general search/filtering
     if (urlParams.q) {
       const queryValue = urlParams.q.toLowerCase();
-      console.log("Applying 'q' parameter:", queryValue);
 
       // Find and check checkboxes that match the query
       const checkboxes =
@@ -64,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .includes(queryValue)
         ) {
           checkbox.checked = true;
-          console.log("Checked checkbox:", checkbox.name, checkbox.value);
         }
       });
     }
@@ -76,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const paramValues = urlParams.getAll
           ? urlParams.getAll(param)
           : [urlParams[param]];
-        console.log(`Applying '${param}' parameter:`, paramValues);
 
         paramValues.forEach((paramValue) => {
           const paramValueLower = paramValue.toLowerCase();
@@ -87,11 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
           checkboxes.forEach((checkbox) => {
             if (checkbox.value.toLowerCase() === paramValueLower) {
               checkbox.checked = true;
-              console.log(
-                `Checked checkbox for ${param}:`,
-                checkbox.name,
-                checkbox.value,
-              );
             }
           });
         });
@@ -264,31 +255,31 @@ document.addEventListener("DOMContentLoaded", () => {
     url.searchParams.delete("max_price");
 
     // Add active filters to URL
-    if (activeFilters.price) {
-      if (activeFilters.price.min > minPrice) {
-        url.searchParams.set("min_price", activeFilters.price.min.toString());
-      }
-      if (activeFilters.price.max < maxPrice) {
-        url.searchParams.set("max_price", activeFilters.price.max.toString());
-      }
-    }
+    // if (activeFilters.price) {
+    //   if (activeFilters.price.min > minPrice) {
+    //     url.searchParams.set("min_price", activeFilters.price.min.toString());
+    //   }
+    //   if (activeFilters.price.max < maxPrice) {
+    //     url.searchParams.set("max_price", activeFilters.price.max.toString());
+    //   }
+    // }
 
     // Add list filters to URL - handle multiple values properly
-    Object.entries(activeFilters.list).forEach(([filterName, values]) => {
-      if (values.length > 0) {
-        // Clear any existing values for this filter
-        url.searchParams.delete(filterName);
+    // Object.entries(activeFilters.list).forEach(([filterName, values]) => {
+    //   if (values.length > 0) {
+    //     // Clear any existing values for this filter
+    //     url.searchParams.delete(filterName);
 
-        // Add each selected value
-        values.forEach((value) => {
-          url.searchParams.append(filterName, value);
-        });
-      }
-    });
+    //     // Add each selected value
+    //     values.forEach((value) => {
+    //       url.searchParams.append(filterName, value);
+    //     });
+    //   }
+    // });
 
     // Update URL without reloading the page
     // for now its commneted
-    // window.history.replaceState({}, "", url);
+    window.history.replaceState({}, "", url);
   }
 
   // Update product display
@@ -368,7 +359,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const filterCheckboxes =
     allProductWrapper.querySelectorAll(".facet-list-value");
   filterCheckboxes.forEach((checkbox) => {
-    checkbox.addEventListener("change", debouncedFilter);
+    checkbox.addEventListener("change", (e) => {
+      // Clear URL when filter changes
+      const url = new URL(window.location);
+      url.search = "";
+      window.history.replaceState({}, "", url);
+
+      // Apply the filter
+      debouncedFilter(e);
+    });
   });
 
   // Price slider setup function - will be called after products are initialized
@@ -455,7 +454,8 @@ document.addEventListener("DOMContentLoaded", () => {
       allProductWrapper.querySelector(".clear-filters-btn");
     if (!existingButton && facetWrapper) {
       const clearButton = document.createElement("button");
-      clearButton.className = "clear-filters-btn";
+      clearButton.className =
+        "clear-filters-btn btn btn-red btn-contained btn-md";
       clearButton.textContent = "Clear All Filters";
       clearButton.addEventListener("click", clearAllFilters);
 
@@ -478,19 +478,4 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     filterProducts();
   }, 100);
-
-  // Debug function - can be called from browser console
-  window.testUrlParams = function (testUrl) {
-    console.log("Testing URL:", testUrl);
-    const originalLocation = window.location.href;
-
-    // Temporarily change URL for testing
-    window.history.pushState({}, "", testUrl);
-
-    // Apply URL parameters
-    applyUrlParamsToFilters();
-
-    // Restore original URL
-    window.history.pushState({}, "", originalLocation);
-  };
 });
