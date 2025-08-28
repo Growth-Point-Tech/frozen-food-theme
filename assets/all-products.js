@@ -208,6 +208,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     updateProductDisplay();
+
+    // Hide loader after filtering is complete
+    hideLoader();
   }
 
   // Get currently active filters
@@ -323,6 +326,22 @@ document.addEventListener("DOMContentLoaded", () => {
     updateUrlWithFilters();
   }
 
+  // Show loader function
+  function showLoader() {
+    const loader = allProductWrapper.querySelector(".filter-loader");
+    if (loader) {
+      loader.style.display = "flex";
+    }
+  }
+
+  // Hide loader function
+  function hideLoader() {
+    const loader = allProductWrapper.querySelector(".filter-loader");
+    if (loader) {
+      loader.style.display = "none";
+    }
+  }
+
   // Debounce function for performance
   function debounce(func, wait) {
     let timeout;
@@ -336,7 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  const debouncedFilter = debounce(filterProducts, 0);
+  const debouncedFilter = debounce(filterProducts, 300);
 
   // Filter toggle functionality
   filterTitle.addEventListener("click", () => {
@@ -364,6 +383,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const url = new URL(window.location);
       url.search = "";
       window.history.replaceState({}, "", url);
+
+      // Show loader
+      showLoader();
 
       // Apply the filter
       debouncedFilter(e);

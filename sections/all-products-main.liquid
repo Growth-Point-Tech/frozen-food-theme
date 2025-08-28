@@ -70,10 +70,17 @@
               {% endfor %}
             </div>
           </div>
-          <div class="all-product-list-group">
+          <div class="all-product-list-group" style="position: relative;">
             <div class="product-count-wrapper">
               <span id="all-product-count">{{ section.settings.collection.products.length }}</span> Products
             </div>
+
+            <!-- Filter Loader -->
+            <div class="filter-loader" style="display: none;">
+              <div class="loader-spinner"></div>
+              <p>Filtering products</p>
+            </div>
+
             <div class="all-products-list-wrapper">
               {% for product in section.settings.collection.products %}
                 {% render 'product-card', product: product %}

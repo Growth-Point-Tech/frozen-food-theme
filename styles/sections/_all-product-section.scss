@@ -1,6 +1,15 @@
 @use "abstracts/_breakpoints" as *;
 @use "abstracts/_variables" as *;
 
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .all-product-wrapper {
   display: flex;
   margin: 50px 0;
@@ -133,6 +142,7 @@
   .all-product-list-group {
     display: flex;
     flex-direction: column;
+    position: relative;
     .all-products-list-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -162,6 +172,32 @@
       font-family: $font-family-brandon-med;
       letter-spacing: 1px;
       margin-bottom: 10px;
+    }
+
+    .filter-loader {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      padding-top: 200px;
+      z-index: 100;
+
+      .loader-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #e5e7eb;
+        border-top: 3px solid $dark-bgColor;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      p {
+        display: none;
+      }
     }
   }
 }
