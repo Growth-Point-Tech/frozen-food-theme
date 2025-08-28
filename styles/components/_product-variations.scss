@@ -56,19 +56,7 @@
           pointer-events: none;
           opacity: 0.4;
           position: relative;
-
-          &::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 2px; /* thickness */
-            background-color: #303336;
-            transform: rotate(-11deg); /* slight angle, adjust as needed */
-            transform-origin: center;
-            pointer-events: none;
-          }
+          text-decoration: line-through;
         }
 
         .variation-price {

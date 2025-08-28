@@ -70,10 +70,15 @@
               {% endfor %}
             </div>
           </div>
-          <div class="all-products-list-wrapper">
-            {% for product in section.settings.collection.products %}
-              {% render 'product-card', product: product %}
-            {% endfor %}
+          <div class="all-product-list-group">
+            <div class="product-count-wrapper">
+              <span id="all-product-count">{{ section.settings.collection.products.length }}</span> Products
+            </div>
+            <div class="all-products-list-wrapper">
+              {% for product in section.settings.collection.products %}
+                {% render 'product-card', product: product %}
+              {% endfor %}
+            </div>
           </div>
         </div>
       </div>

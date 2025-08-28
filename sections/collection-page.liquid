@@ -2,12 +2,16 @@
   <div class="container">
     <div class="row">
       <div class="col">
+        {% comment %} ?filter.p.filter.p.product_type=bundles&filter.p.filter.p.product_type=frozen+food {% endcomment %}
         {% if section.blocks.size == 0 %}
           <div class="no-collection-found-wrapper">No Collection Found</div>
         {% else %}
           <div class="collection-wrapper">
             {% for block in section.blocks %}
-              <a href="/pages/all-products" class="collection-item">
+              <a
+                href="/pages/all-products?filter.p.product_type={{ block.settings.collection_title | downcase | replace: ' ', '+' }}"
+                class="collection-item"
+              >
                 <div class="collection-image-wrapper">
                   <img
                     src="{{ block.settings.collection_image | image_url}}"

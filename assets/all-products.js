@@ -15,6 +15,103 @@ document.addEventListener("DOMContentLoaded", () => {
   let minPrice = 0;
   let maxPrice = 1000; // Default max, will be updated
 
+  // Function to get URL query parameters
+  function getUrlParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const params = {};
+    for (const [key, value] of urlParams.entries()) {
+      if (params[key]) {
+        // If parameter already exists, convert to array
+        if (Array.isArray(params[key])) {
+          params[key].push(value);
+        } else {
+          params[key] = [params[key], value];
+        }
+      } else {
+        params[key] = value;
+      }
+    }
+    return params;
+  }
+
+  // Function to apply URL query parameters to filters
+  function applyUrlParamsToFilters() {
+    const urlParams = getUrlParams();
+
+    // Debug: Log URL parameters
+    console.log("URL Parameters:", urlParams);
+
+    // Handle the 'q' parameter for general search/filtering
+    if (urlParams.q) {
+      const queryValue = urlParams.q.toLowerCase();
+      console.log("Applying 'q' parameter:", queryValue);
+
+      // Find and check checkboxes that match the query
+      const checkboxes =
+        allProductWrapper.querySelectorAll(".facet-list-value");
+      checkboxes.forEach((checkbox) => {
+        const checkboxValue = checkbox.value.toLowerCase();
+        const checkboxName = checkbox.name.toLowerCase();
+
+        // Check if the query matches the checkbox value, name, or any other relevant attribute
+        if (
+          checkboxValue.includes(queryValue) ||
+          checkboxName.includes(queryValue) ||
+          checkbox
+            .closest(".facet")
+            ?.querySelector(".facet-label")
+            ?.textContent.toLowerCase()
+            .includes(queryValue)
+        ) {
+          checkbox.checked = true;
+          console.log("Checked checkbox:", checkbox.name, checkbox.value);
+        }
+      });
+    }
+
+    // Handle other specific filter parameters if they exist
+    Object.keys(urlParams).forEach((param) => {
+      if (param !== "q" && param !== "min_price" && param !== "max_price") {
+        // Handle multiple values for the same parameter (e.g., ?product_type=meat&product_type=vegetarian)
+        const paramValues = urlParams.getAll
+          ? urlParams.getAll(param)
+          : [urlParams[param]];
+        console.log(`Applying '${param}' parameter:`, paramValues);
+
+        paramValues.forEach((paramValue) => {
+          const paramValueLower = paramValue.toLowerCase();
+          const checkboxes = allProductWrapper.querySelectorAll(
+            `[name="${param}"]`,
+          );
+
+          checkboxes.forEach((checkbox) => {
+            if (checkbox.value.toLowerCase() === paramValueLower) {
+              checkbox.checked = true;
+              console.log(
+                `Checked checkbox for ${param}:`,
+                checkbox.name,
+                checkbox.value,
+              );
+            }
+          });
+        });
+      }
+    });
+
+    // Handle price parameters if they exist
+    if (urlParams.min_price || urlParams.max_price) {
+      const minInput = document.getElementById("price-min-value");
+      const maxInput = document.getElementById("price-max-value");
+
+      if (minInput && urlParams.min_price) {
+        minInput.value = urlParams.min_price;
+      }
+      if (maxInput && urlParams.max_price) {
+        maxInput.value = urlParams.max_price;
+      }
+    }
+  }
+
   // Initialize original products array
   function initializeProducts() {
     const productCards = productsContainer.querySelectorAll(".product-card");
@@ -156,6 +253,44 @@ document.addEventListener("DOMContentLoaded", () => {
     return filters;
   }
 
+  // Function to update URL with current filter state
+  function updateUrlWithFilters() {
+    const activeFilters = getActiveFilters();
+    const url = new URL(window.location);
+
+    // Clear existing filter parameters
+    url.searchParams.delete("q");
+    url.searchParams.delete("min_price");
+    url.searchParams.delete("max_price");
+
+    // Add active filters to URL
+    if (activeFilters.price) {
+      if (activeFilters.price.min > minPrice) {
+        url.searchParams.set("min_price", activeFilters.price.min.toString());
+      }
+      if (activeFilters.price.max < maxPrice) {
+        url.searchParams.set("max_price", activeFilters.price.max.toString());
+      }
+    }
+
+    // Add list filters to URL - handle multiple values properly
+    Object.entries(activeFilters.list).forEach(([filterName, values]) => {
+      if (values.length > 0) {
+        // Clear any existing values for this filter
+        url.searchParams.delete(filterName);
+
+        // Add each selected value
+        values.forEach((value) => {
+          url.searchParams.append(filterName, value);
+        });
+      }
+    });
+
+    // Update URL without reloading the page
+    // for now its commneted
+    // window.history.replaceState({}, "", url);
+  }
+
   // Update product display
   function updateProductDisplay() {
     const filteredElements = new Set(filteredProducts.map((p) => p.element));
@@ -177,7 +312,6 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     if (filteredProducts.length === 0) {
       if (!noProductsMessage) {
-        noProductsMessage = document.createElement("div");
         noProductsMessage.className = "no-products-message";
         noProductsMessage.innerHTML =
           "<p>No products found matching your filters.</p>";
@@ -189,10 +323,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Update product count if there's a counter element
-    const productCount = document.querySelector(".product-count");
+    const productCount = document.querySelector("#all-product-count");
     if (productCount) {
-      productCount.textContent = `${filteredProducts.length} products`;
+      productCount.textContent = `${filteredProducts.length}`;
     }
+
+    // Update URL with current filter state
+    updateUrlWithFilters();
   }
 
   // Debounce function for performance
@@ -208,7 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  const debouncedFilter = debounce(filterProducts, 300);
+  const debouncedFilter = debounce(filterProducts, 0);
 
   // Filter toggle functionality
   filterTitle.addEventListener("click", () => {
@@ -234,33 +371,57 @@ document.addEventListener("DOMContentLoaded", () => {
     checkbox.addEventListener("change", debouncedFilter);
   });
 
-  // Price slider setup
-  const slider = document.getElementById("price-slider");
-  const minInput = document.getElementById("price-min-value");
-  const maxInput = document.getElementById("price-max-value");
-  const minDisplay = document.getElementById("price-min-display");
-  const maxDisplay = document.getElementById("price-max-display");
+  // Price slider setup function - will be called after products are initialized
+  function setupPriceSlider() {
+    const slider = document.getElementById("price-slider");
+    const minInput = document.getElementById("price-min-value");
+    const maxInput = document.getElementById("price-max-value");
+    const minDisplay = document.getElementById("price-min-display");
+    const maxDisplay = document.getElementById("price-max-display");
 
-  if (slider && typeof noUiSlider !== "undefined") {
-    noUiSlider.create(slider, {
-      start: [parseInt(minInput.value), parseInt(maxInput.value)],
-      connect: true,
-      step: 1,
-      range: {
-        min: minPrice,
-        max: maxPrice,
-      },
-    });
+    if (slider && typeof noUiSlider !== "undefined") {
+      // Get URL price parameters if they exist
+      const urlParams = getUrlParams();
+      const startMin = urlParams.min_price
+        ? parseInt(urlParams.min_price)
+        : minPrice;
+      const startMax = urlParams.max_price
+        ? parseInt(urlParams.max_price)
+        : maxPrice;
 
-    slider.noUiSlider.on("update", function (values) {
-      minDisplay.textContent = Math.round(values[0]);
-      maxDisplay.textContent = Math.round(values[1]);
-      minInput.value = Math.round(values[0]);
-      maxInput.value = Math.round(values[1]);
-    });
+      noUiSlider.create(slider, {
+        start: [startMin, startMax],
+        connect: true,
+        step: 1,
+        range: {
+          min: minPrice,
+          max: maxPrice,
+        },
+      });
 
-    // Add filtering on price slider change
-    slider.noUiSlider.on("change", debouncedFilter);
+      slider.noUiSlider.on("update", function (values) {
+        minDisplay.textContent = Math.round(values[0]);
+        maxDisplay.textContent = Math.round(values[1]);
+        minInput.value = Math.round(values[0]);
+        maxInput.value = Math.round(values[1]);
+      });
+
+      // Update display elements with URL parameter values if they exist
+      const sliderUrlParams = getUrlParams();
+      if (sliderUrlParams.min_price || sliderUrlParams.max_price) {
+        if (sliderUrlParams.min_price) {
+          minDisplay.textContent = sliderUrlParams.min_price;
+          minInput.value = sliderUrlParams.min_price;
+        }
+        if (sliderUrlParams.max_price) {
+          maxDisplay.textContent = sliderUrlParams.max_price;
+          maxInput.value = sliderUrlParams.max_price;
+        }
+      }
+
+      // Add filtering on price slider change
+      slider.noUiSlider.on("change", debouncedFilter);
+    }
   }
 
   // Clear all filters functionality
@@ -272,12 +433,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Reset price slider
+    const slider = document.getElementById("price-slider");
     if (slider && slider.noUiSlider) {
       slider.noUiSlider.set([minPrice, maxPrice]);
     }
 
     // Reset products
     filteredProducts = [...originalProducts];
+
+    // Clear URL parameters
+    const url = new URL(window.location);
+    url.search = "";
+    window.history.replaceState({}, "", url);
+
     updateProductDisplay();
   }
 
@@ -303,9 +471,26 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize everything
   initializeProducts();
   addClearFiltersButton();
+  setupPriceSlider(); // Setup price slider with actual product price range
+  applyUrlParamsToFilters(); // Apply URL parameters on load
 
   // Initial filter application (in case there are pre-selected filters from URL)
   setTimeout(() => {
     filterProducts();
   }, 100);
+
+  // Debug function - can be called from browser console
+  window.testUrlParams = function (testUrl) {
+    console.log("Testing URL:", testUrl);
+    const originalLocation = window.location.href;
+
+    // Temporarily change URL for testing
+    window.history.pushState({}, "", testUrl);
+
+    // Apply URL parameters
+    applyUrlParamsToFilters();
+
+    // Restore original URL
+    window.history.pushState({}, "", originalLocation);
+  };
 });
